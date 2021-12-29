@@ -48,4 +48,10 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 配置环境对应的请求地址
   WinnerEnvironmentUrl get environmentUrl;
+
+  /// 展示错误[Toast]
+  void showErrorToast(String message) {}
+
+  /// 展示成功[Toast]
+  void showSuccessToast(String message) {}
 }

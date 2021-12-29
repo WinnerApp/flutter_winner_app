@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_app/constant/global_config.dart';
 import 'package:flutter_winner_app/constant/winner_color.dart';
 import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -52,6 +53,18 @@ extension ToastStyle on Style {
       textColor: Colors.white,
       fontSize: 16.0,
     );
+  }
+
+  /// 展示错误消息
+  /// [msg] 错误消息内容
+  static Future<void> showErrorToast({required String msg}) async {
+    Global().appConfig.showErrorToast(msg);
+  }
+
+  /// 展示成功消息
+  /// [msg] 成功消息内容
+  static showSuccessToast({required String msg}) {
+    Global().appConfig.showSuccessToast(msg);
   }
 }
 
