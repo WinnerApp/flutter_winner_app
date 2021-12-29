@@ -6,7 +6,7 @@ import 'package:flutter_winner_app/network/base_model.dart';
 import 'package:flutter_winner_app/util/log_util.dart';
 import 'package:path_provider/path_provider.dart';
 
-class WinnerBaseModel<T> extends BaseModel {
+abstract class WinnerBaseModel<T> extends BaseModel {
   T? data;
   List<T>? list;
   dynamic rawData;
@@ -16,31 +16,10 @@ class WinnerBaseModel<T> extends BaseModel {
     if (api.isUseCache) {
       _saveInCache(data, api);
     }
-    _parseData(data, api);
+    customParseData(data, api);
   }
 
-  void _parseData(Map<String, dynamic> data, Api api) {
-    code = data["code"] ?? -1;
-    message = data["message"] ?? "系统错误";
-    isSuccess = data["success"] ?? false;
-    rawData = data["data"];
-    Map<String, dynamic>? pageData = data["page"];
-    if (pageData != null) {
-      // page = PageModel().fromJson(pageData);
-    }
-    if (rawData == null) return;
-    if (rawData is List) {
-      List<T> models = [];
-      for (var element in rawData) {
-        if (element is Map<String, dynamic>) {
-          models.add(api.converter.fromJson(element));
-        }
-      }
-      list = models;
-    } else {
-      this.data = api.converter.fromJson(rawData);
-    }
-  }
+  void customParseData(Map<String, dynamic> data, Api api);
 
   T rawDataConverter(DefaultJsonConverter<T> converter) {
     return converter.fromJson(rawData);
@@ -78,7 +57,7 @@ class WinnerBaseModel<T> extends BaseModel {
     var jsonText = await file.readAsString();
     if (jsonText.isEmpty) return this;
     var data = json.decode(jsonText);
-    _parseData(data, api);
+    customParseData(data, api);
     return this;
   }
 }

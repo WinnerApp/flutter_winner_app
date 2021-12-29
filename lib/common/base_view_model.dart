@@ -33,7 +33,7 @@ abstract class BaseViewModel extends ChangeNotifier {
 
     /// 如果当前没有显示加载[HUD] 则显示[HUD]
     if (!isLoadingHUD && isUseLoading) showHUD();
-    M model = await Global.request(api: api);
+    M model = await Global().request(api: api);
     String? verifyMessage = verify?.call(model);
     if ((!model.isSuccess || verifyMessage != null) && isUseLoading) {
       /// 如果请求错误 或者有自定义验证错误信息 则隐藏[HUD]

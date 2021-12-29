@@ -23,7 +23,7 @@ class Global {
   Future<M> request<T, C extends JsonConverter, M extends WinnerBaseModel<T>>({
     required Api<C, M> api,
   }) async {
-    Map<String, dynamic> headers = appConfig.configHTTPHeaders();
+    Map<String, dynamic> headers = appConfig.httpHeaders;
     return httpManager.request(api, headers: headers);
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_mall/constant/winner_color.dart';
 import 'package:flutter_winner_app/constant/winner_color.dart';
 
 /// 稳健卡片组件

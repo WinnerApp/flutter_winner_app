@@ -19,17 +19,14 @@ class BaseUrl {
       var url = await _getPreferenceBaseUrl();
       if (url != null) return BaseUrl(url);
     }
-    WinnerEnvironmentUrl? url = WinnerApp().url;
-    if (url == null) {
-      throw "你必须在main初始化WinnerApp.url";
-    }
+    WinnerEnvironmentUrl environmentUrl = Global().appConfig.environmentUrl;
     switch (environment) {
       case AppEnvironment.debug:
-        return url.debug;
+        return environmentUrl.debug;
       case AppEnvironment.profile:
-        return url.profile;
+        return environmentUrl.profile;
       case AppEnvironment.release:
-        return url.release;
+        return environmentUrl.release;
       default:
         return BaseUrl("");
     }
