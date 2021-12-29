@@ -16,7 +16,7 @@ import 'base_model.dart';
 /// 3>：如果比对结果不一样，就去刷新列表数据，同时把之前数据库中的数据删除，然后存储新的数据；
 class HttpManager {
   /// 设置请求的`URL`
-  final String baseUrl;
+  String baseUrl;
 
   ///同一个CancelToken可以用于多个请求，当一个CancelToken取消时，所有使用该CancelToken的请求都会被取消，一个页面对应一个CancelToken。
   final Map<String, CancelToken> _cancelTokens = <String, CancelToken>{};
@@ -27,8 +27,9 @@ class HttpManager {
   HttpManager({
     required this.baseUrl,
   }) : client = Dio(BaseOptions(connectTimeout: 30000, receiveTimeout: 3000)) {
-    client.interceptors
-        .add(LogInterceptor(requestBody: true, responseBody: true));
+    client.interceptors.add(
+      LogInterceptor(requestBody: true, responseBody: true),
+    );
 
     if (client.httpClientAdapter is DefaultHttpClientAdapter) {
       // 在调试模式下需要抓包调试，所以我们使用代理，并禁用HTTPS证书校验

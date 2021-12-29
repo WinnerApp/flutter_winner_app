@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_mall/widget/winner_text.dart';
 import 'package:flutter_winner_app/widget/winner_text.dart';
 
 class WinnerListFootView extends StatelessWidget {
