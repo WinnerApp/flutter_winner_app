@@ -42,7 +42,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
         configPage(_pageController, context);
         return Scaffold(
           resizeToAvoidBottomInset: _pageController.resizeToAvoidBottomInset,
-          appBar: _pageController.appBar?.appBar(),
+          appBar: _appBar,
           body: Selector<M, bool>(
             selector: (p0, p1) => p1.isLoadingHUD,
             builder: (context, value, child) {
@@ -52,6 +52,11 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
         );
       },
     );
+  }
+
+  AppBar? get _appBar {
+    if (_pageController.hiddenAppBar) return null;
+    return _pageController.appBar?.appBar();
   }
 
   Widget _contentView(BuildContext context) {
