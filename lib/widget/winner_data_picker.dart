@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:flutter_winner_app/widget/style.dart';
 import 'package:flutter_winner_app/widget/view_line.dart';
 import 'package:flutter_winner_app/widget/view_util.dart';
@@ -58,7 +57,7 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                   child: Center(
                     child: WinnerTextStyle.text(
                       widget.title,
-                      font: WFont.f16(),
+                      fontSize: 16,
                       color: const Color(0xFF333333),
                     ),
                   ),

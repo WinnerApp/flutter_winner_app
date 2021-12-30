@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_app/constant/global_config.dart';
-import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Style {}
@@ -56,7 +55,7 @@ extension WinnerTextStyle on Style {
   static Text listTitleText(String data) => Text(
         data,
         style: TextStyle(
-          fontSize: WFont.f14().font,
+          fontSize: Global().appConfig.fontTheme.listTitleText,
           color: Global().appConfig.colorTheme.listTitleText,
         ),
       );
@@ -64,7 +63,7 @@ extension WinnerTextStyle on Style {
   static Text listValueText(String data) => Text(
         data,
         style: TextStyle(
-          fontSize: WFont.f14().font,
+          fontSize: Global().appConfig.fontTheme.listValueText,
           color: Global().appConfig.colorTheme.listValueText,
         ),
       );
@@ -72,13 +71,12 @@ extension WinnerTextStyle on Style {
   static Text text(
     String data, {
     Color? color,
-    WFont? font,
+    double? fontSize,
   }) {
-    font = font ?? WFont.f14();
     return Text(
       data,
       style: TextStyle(
-        fontSize: font.font,
+        fontSize: fontSize,
         color: color,
       ),
     );

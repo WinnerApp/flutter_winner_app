@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_app/constant/global_config.dart';
-import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:flutter_winner_app/widget/style.dart';
 import 'package:flutter_winner_app/widget/winner_text_button.dart';
 
@@ -14,10 +13,12 @@ class PressState {
     String title, {
     Color? titleColor,
     Color? backgroundColor,
+    double? fontSize,
     this.onTap,
   })  : title = WinnerTextStyle.text(
           title,
-          font: WFont.f16(),
+          fontSize:
+              fontSize ?? Global().appConfig.fontTheme.pressStateButtonTitle,
           color: titleColor ??
               Global().appConfig.colorTheme.pressStateStartButtonTitle,
         ),
@@ -28,10 +29,12 @@ class PressState {
     String title, {
     Color? titleColor,
     Color? backgroundColor,
+    double? fontSize,
     this.onTap,
   })  : title = WinnerTextStyle.text(
           title,
-          font: WFont.f16(),
+          fontSize:
+              fontSize ?? Global().appConfig.fontTheme.pressStateButtonTitle,
           color: titleColor ??
               Global().appConfig.colorTheme.pressStateEndButtonTitle,
         ),

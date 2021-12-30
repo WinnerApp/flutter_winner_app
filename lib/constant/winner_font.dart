@@ -1,10 +1,10 @@
 class WFont {
-  final double font;
-  WFont.f10() : font = 10;
-  WFont.f12() : font = 12;
-  WFont.f13() : font = 13;
-  WFont.f14() : font = 14;
-  WFont.f15() : font = 15;
-  WFont.f16() : font = 16;
-  WFont.f18() : font = 18;
+  /// [PressStateButton]标题字体大小
+  double get pressStateButtonTitle => 16;
+
+  /// [List]标题字体
+  double get listTitleText => 14;
+
+  /// [List]值字体
+  double get listValueText => 14;
 }

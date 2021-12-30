@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:flutter_winner_app/widget/style.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +39,7 @@ class _WinnerPopUpMenuButtonState<T extends WinnerPopUpMenuItem>
                 children: [
                   WinnerTextStyle.text(
                     viewModel.selectValue?.menuItemTitle ?? widget.menuTip,
-                    font: WFont.f14(),
+                    fontSize: 14,
                     color: const Color(0xFF666666),
                   ),
                   const Icon(
