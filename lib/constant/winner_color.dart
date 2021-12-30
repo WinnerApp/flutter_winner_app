@@ -1,42 +1,45 @@
 import 'package:flutter/material.dart';
 
 class WColor {
-  Color color;
-  WColor(this.color);
-  WColor.c0fbda6() : this.main();
-  WColor.c000000() : this.headline();
-  WColor.c333333() : this.mainTitle();
-  WColor.c666666() : this.subTitle();
-  WColor.cf8f9fa() : this.background();
-  WColor.cf4f5fa() : this.searchBackground();
-  WColor.ce68181() : color = const Color(0xFFE68181);
-  WColor.ccccccc() : color = const Color(0xFFCCCCCC);
-  WColor.ceeeeee() : color = const Color(0xFFEEEEEE);
-  WColor.cffffff() : color = const Color(0xFFFFFFFF);
-  WColor.c999999() : color = const Color(0xFF999999);
-  WColor.c209090() : color = const Color(0xFF209090);
-  WColor.ce87050() : color = const Color(0xFFE87050);
-  WColor.cf19037() : color = const Color(0xFFF19037);
-  WColor.c0ea1da() : color = const Color(0xFF0EA1DA);
-  WColor.cd8d8d8() : color = const Color(0xFFD8D8D8);
-
-  /// 主色
-  WColor.main() : color = const Color(0xFF209090);
-
-  /// 大标题
-  WColor.headline() : color = const Color(0XFF333333);
+  /// 背景色
+  Color get background => const Color(0xFFEFEFEF);
 
   /// 主标题
-  WColor.mainTitle() : color = const Color(0xFF333333);
+  Color get mainTitle => const Color(0xFF333333);
 
-  /// 副标题
-  WColor.subTitle() : color = const Color(0xFF666666);
+  /// [AppBar]的背景色
+  Color get appBarBackground => const Color(0xFFFFFFFF);
 
-  /// 背景色
-  WColor.background() : color = const Color(0xFFEFEFEF);
+  /// 空白视图的背景视图
+  Color get emptyBackground => const Color(0xFFF8F9Fa);
 
-  /// 搜索的背景色
-  WColor.searchBackground() : color = const Color(0xFFF4F5FA);
+  /// [PressStateButton]开始状态标题颜色
+  Color get pressStateStartButtonTitle => const Color(0xFFFFFFFF);
 
-  WColor.navigationBar() : color = Colors.white;
+  /// PressStateButton]开始状态背景颜色
+  Color get pressStateStartButtonBackground => const Color(0xFF209090);
+
+  /// [PressStateButton]结束的标题颜色
+  Color get pressStateEndButtonTitle => const Color(0xFFFFFFFF);
+
+  /// [PressStateButton]结束的背景颜色
+  Color get pressStateEndButtonBackground => const Color(0xFFE87050);
+
+  /// 导航栏标题颜色
+  Color get navigationBarTitle => const Color(0XFF333333);
+
+  /// [Toast]背景颜色
+  Color get toastBackground => const Color(0xFF209090);
+
+  /// 列表标题颜色
+  Color get listTitleText => const Color(0xFF999999);
+
+  /// 列表值颜色
+  Color get listValueText => const Color(0xFF333333);
+
+  /// [BackButton]的按钮颜色
+  Color get backButton => const Color(0xFF333333);
+
+  /// 主色
+  Color get main => const Color(0xFF209090);
 }

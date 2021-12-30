@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
 import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:flutter_winner_app/widget/style.dart';
 import 'package:flutter_winner_app/widget/view_line.dart';
@@ -60,11 +59,11 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                     child: WinnerTextStyle.text(
                       widget.title,
                       font: WFont.f16(),
-                      color: WColor.c333333(),
+                      color: const Color(0xFF333333),
                     ),
                   ),
                 ),
-                ViewLine(.5, lineColor: WColor.cd8d8d8().color),
+                const ViewLine(.5, lineColor: Color(0xFFD8D8D8)),
                 Expanded(
                   child: CupertinoPicker(
                     itemExtent: 50,
@@ -76,15 +75,15 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                     selectionOverlay: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
-                        children: [
+                        children: const [
                           ViewLine(
                             .5,
-                            lineColor: WColor.c209090().color,
+                            lineColor: Color(0xFF209090),
                           ),
-                          const Spacer(),
+                          Spacer(),
                           ViewLine(
                             .5,
-                            lineColor: WColor.c209090().color,
+                            lineColor: Color(0xFF209090),
                           ),
                         ],
                       ),
@@ -100,7 +99,7 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                       height: 35,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: WColor.c999999().color,
+                          color: const Color(0xFF999999),
                           width: .5,
                         ),
                         borderRadius:
@@ -112,7 +111,7 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                         },
                         child: WinnerTextStyle.text(
                           "取消",
-                          color: WColor.c999999(),
+                          color: const Color(0xFF999999),
                         ),
                       ),
                     ),
@@ -121,9 +120,9 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                       width: 135,
                       height: 35,
                       decoration: BoxDecoration(
-                        color: WColor.main().color,
+                        color: const Color(0xFF209090),
                         border: Border.all(
-                          color: WColor.c999999().color,
+                          color: const Color(0xFF999999),
                           width: .5,
                         ),
                         borderRadius:
@@ -137,7 +136,7 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                         },
                         child: WinnerTextStyle.text(
                           "确定",
-                          color: WColor.cffffff(),
+                          color: const Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
@@ -158,7 +157,9 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
     return Center(
       child: WinnerTextStyle.text(
         widget.items[index],
-        color: currentIndex == index ? WColor.c209090() : WColor.c999999(),
+        color: currentIndex == index
+            ? const Color(0xFF209090)
+            : const Color(0xFF999999),
       ),
     );
   }

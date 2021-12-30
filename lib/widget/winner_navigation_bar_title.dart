@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
+import 'package:flutter_winner_app/constant/global_config.dart';
 
 class WinnerNavigationBarTitle extends StatelessWidget {
   final String title;
@@ -14,7 +14,7 @@ class WinnerNavigationBarTitle extends StatelessWidget {
       title,
       style: TextStyle(
         fontSize: 18,
-        color: WColor.headline().color,
+        color: Global().appConfig.colorTheme.navigationBarTitle,
       ),
     );
   }

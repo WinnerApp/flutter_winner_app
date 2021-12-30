@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_app/constant/base_url_enum.dart';
 import 'package:flutter_winner_app/constant/sentry_host.dart';
+import 'package:flutter_winner_app/constant/winner_color.dart';
 import 'package:flutter_winner_app/constant/winner_environment_url.dart';
 import 'package:flutter_winner_app/constant/winner_route.dart';
 import 'package:provider/single_child_widget.dart';
@@ -54,4 +55,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 展示成功[Toast]
   void showSuccessToast(String message) {}
+
+  /// 颜色配色
+  WColor colorTheme = WColor();
 }

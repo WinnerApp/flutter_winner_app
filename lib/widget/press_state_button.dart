@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
+import 'package:flutter_winner_app/constant/global_config.dart';
 import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:flutter_winner_app/widget/style.dart';
 import 'package:flutter_winner_app/widget/winner_text_button.dart';
@@ -8,23 +8,35 @@ typedef PressStateButtonOnTap = Function(WinnerTextButtonController controller);
 
 class PressState {
   final Widget title;
-  final WColor background;
+  final Color background;
   final PressStateButtonOnTap? onTap;
-  PressState.start(String title, {this.onTap})
-      : title = WinnerTextStyle.text(
+  PressState.start(
+    String title, {
+    Color? titleColor,
+    Color? backgroundColor,
+    this.onTap,
+  })  : title = WinnerTextStyle.text(
           title,
           font: WFont.f16(),
-          color: WColor.cffffff(),
+          color: titleColor ??
+              Global().appConfig.colorTheme.pressStateStartButtonTitle,
         ),
-        background = WColor.c209090();
+        background = backgroundColor ??
+            Global().appConfig.colorTheme.pressStateStartButtonBackground;
 
-  PressState.end(String title, {this.onTap})
-      : title = WinnerTextStyle.text(
+  PressState.end(
+    String title, {
+    Color? titleColor,
+    Color? backgroundColor,
+    this.onTap,
+  })  : title = WinnerTextStyle.text(
           title,
           font: WFont.f16(),
-          color: WColor.cffffff(),
+          color: titleColor ??
+              Global().appConfig.colorTheme.pressStateEndButtonTitle,
         ),
-        background = WColor.ce87050();
+        background = backgroundColor ??
+            Global().appConfig.colorTheme.pressStateEndButtonBackground;
 }
 
 class PressStateButton extends StatefulWidget {
@@ -46,7 +58,7 @@ class _PressStateButtonState extends State<PressStateButton> {
     super.initState();
     _buttonController = WinnerTextButtonController(
       title: widget.state.title,
-      backgroundColor: widget.state.background.color,
+      backgroundColor: widget.state.background,
       onTap: () {
         widget.state.onTap?.call(_buttonController);
       },
@@ -63,7 +75,7 @@ extension PressStateController on WinnerTextButtonController {
   void changeState(PressState state) {
     change(
       title: state.title,
-      backgroundColor: state.background.color,
+      backgroundColor: state.background,
       onTap: () {
         state.onTap?.call(this);
       },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_app/constant/global_config.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
 import 'package:flutter_winner_app/constant/winner_font.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -13,24 +12,8 @@ extension NavigationBarStyle on Style {
       title,
       style: TextStyle(
         fontSize: 18,
-        color: WColor.headline().color,
+        color: Global().appConfig.colorTheme.navigationBarTitle,
       ),
-    );
-  }
-
-  /// Winner的导航条
-  static AppBar winnerAppBar({
-    required BuildContext context,
-    required String title,
-    List<Widget>? actions,
-    Widget? leading,
-  }) {
-    return AppBar(
-      centerTitle: true,
-      title: navigationBarTitle(title: title),
-      backgroundColor: WColor.navigationBar().color,
-      actions: actions,
-      leading: leading ?? const BackButton(color: Colors.black),
     );
   }
 }
@@ -49,7 +32,8 @@ extension ToastStyle on Style {
       toastLength: toastLength,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
-      backgroundColor: backgroundColor ?? WColor.main().color,
+      backgroundColor:
+          backgroundColor ?? Global().appConfig.colorTheme.toastBackground,
       textColor: Colors.white,
       fontSize: 16.0,
     );
@@ -73,7 +57,7 @@ extension WinnerTextStyle on Style {
         data,
         style: TextStyle(
           fontSize: WFont.f14().font,
-          color: WColor.c999999().color,
+          color: Global().appConfig.colorTheme.listTitleText,
         ),
       );
 
@@ -81,22 +65,21 @@ extension WinnerTextStyle on Style {
         data,
         style: TextStyle(
           fontSize: WFont.f14().font,
-          color: WColor.c333333().color,
+          color: Global().appConfig.colorTheme.listValueText,
         ),
       );
 
   static Text text(
     String data, {
-    WColor? color,
+    Color? color,
     WFont? font,
   }) {
-    color = color ?? WColor.c209090();
     font = font ?? WFont.f14();
     return Text(
       data,
       style: TextStyle(
         fontSize: font.font,
-        color: color.color,
+        color: color,
       ),
     );
   }

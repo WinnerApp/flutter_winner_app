@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_app/constant/winner_color.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:flutter_winner_app/widget/winner_app_bar.dart';
 import 'package:flutter_winner_app/widget/winner_navigation_bar_title.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -61,7 +62,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
 
   Widget _contentView(BuildContext context) {
     return Container(
-      color: WColor.background().color,
+      color: WColor().background,
       child: buildPage(context),
     );
   }
@@ -102,6 +103,6 @@ class BasePageController {
   BasePageController() {
     appBar = WinnerAppBar()
       ..centerTitle = true
-      ..backgroundColor = WColor.cffffff().color;
+      ..backgroundColor = Global().appConfig.colorTheme.appBarBackground;
   }
 }

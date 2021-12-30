@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
+import 'package:flutter_winner_app/constant/global_config.dart';
 import 'package:flutter_winner_app/constant/winner_font.dart';
 
 class WinnerText extends StatelessWidget {
@@ -23,7 +23,7 @@ class WinnerText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: TextStyle(
-        color: color ?? WColor.mainTitle().color,
+        color: color ?? Global().appConfig.colorTheme.mainTitle,
         fontSize: fontSize ?? WFont.f14().font,
       ),
     );

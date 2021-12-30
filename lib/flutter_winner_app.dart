@@ -18,8 +18,6 @@ import 'package:flutter_ume_kit_perf/flutter_ume_kit_perf.dart'; // 性能插件
 import 'package:flutter_ume_kit_console/flutter_ume_kit_console.dart'; // debugPrint 插件包
 import 'package:flutter_ume_kit_dio/flutter_ume_kit_dio.dart';
 
-import 'constant/winner_color.dart'; // Dio 网络请求调试工具
-
 export 'common/base_page.dart';
 export 'common/base_view_model.dart';
 export 'common/winner_base_model.dart';
@@ -161,7 +159,7 @@ class MyApp extends StatelessWidget {
       routes: _routes(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
-          color: WColor.cffffff().color,
+          color: Global().appConfig.colorTheme.appBarBackground,
           centerTitle: true,
           titleTextStyle: const TextStyle(color: Colors.black),
         ),

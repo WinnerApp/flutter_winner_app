@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
+import 'package:flutter_winner_app/constant/global_config.dart';
 
 /// 空白试图
 class EmptyView extends StatefulWidget {
@@ -14,8 +14,17 @@ class EmptyView extends StatefulWidget {
 
   /// 点击事件
   final void Function() tap;
-  const EmptyView(this.icon, this.title, this.actionTitle, this.tap, {Key? key})
-      : super(key: key);
+
+  /// 背景颜色
+  final Color? backgroundColor;
+  const EmptyView(
+    this.icon,
+    this.title,
+    this.actionTitle,
+    this.tap, {
+    Key? key,
+    this.backgroundColor,
+  }) : super(key: key);
 
   @override
   _EmptyViewState createState() => _EmptyViewState();
@@ -25,7 +34,7 @@ class _EmptyViewState extends State<EmptyView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: WColor.cf8f9fa().color,
+      color: backgroundColor,
       child: Column(
         children: [
           Expanded(child: Container()),
@@ -40,5 +49,11 @@ class _EmptyViewState extends State<EmptyView> {
         ],
       ),
     );
+  }
+
+  Color get backgroundColor {
+    Color? backgroundColor = widget.backgroundColor;
+    if (backgroundColor != null) return backgroundColor;
+    return Global().appConfig.colorTheme.emptyBackground;
   }
 }
