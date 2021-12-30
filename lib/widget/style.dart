@@ -71,7 +71,7 @@ extension WinnerTextStyle on Style {
   static Text text(
     String data, {
     Color? color,
-    double? fontSize,
+    double? fontSize, font,
   }) {
     return Text(
       data,
