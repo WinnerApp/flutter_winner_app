@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_winner_app/constant/winner_color.dart';
 
 /// 稳健的 [AppBar] 配置
 class WinnerAppBar {
@@ -42,7 +43,7 @@ class WinnerAppBar {
       shape: shape,
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
-      iconTheme: iconTheme,
+      iconTheme: iconTheme ?? IconThemeData(color: WColor.c333333().color),
       actionsIconTheme: actionsIconTheme,
       primary: primary,
       centerTitle: centerTitle,

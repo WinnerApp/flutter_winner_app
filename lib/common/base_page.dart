@@ -102,6 +102,6 @@ class BasePageController {
   BasePageController() {
     appBar = WinnerAppBar()
       ..centerTitle = true
-      ..backgroundColor = WColor.background().color;
+      ..backgroundColor = WColor.cffffff().color;
   }
 }
