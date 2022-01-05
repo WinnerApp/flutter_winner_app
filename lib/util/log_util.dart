@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class LogUtil {
@@ -6,6 +8,6 @@ class LogUtil {
   factory LogUtil() => _logUtil;
 
   void v(String v) {
-    debugPrint(v);
+    log(v);
   }
 }
