@@ -1,12 +1,6 @@
 import 'package:event_bus/event_bus.dart';
-import 'package:flutter_winner_app/common/winner_base_model.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
-import 'package:flutter_winner_app/network/api.dart';
-import 'package:flutter_winner_app/network/http_manager.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'app_environment.dart';
-import 'base_url_enum.dart';
 
 class Global {
   static final Global _global = Global._();

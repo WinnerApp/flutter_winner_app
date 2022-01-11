@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 
 class NavigatorUtil {
   ///跳转到指定页面，Cupertino主题 （ios）
@@ -10,14 +8,16 @@ class NavigatorUtil {
   }
 
   static pushAsync(BuildContext context, Widget page) async {
-    return await Navigator.push(context, CupertinoPageRoute(builder: (context) => page));
+    return await Navigator.push(
+        context, CupertinoPageRoute(builder: (context) => page));
   }
 
   /// 模态弹出一个视图
   /// - context 来源视图
   /// - page 对应界面
   /// - fullscreenDialog 是否全屏幕 默认为true
-  static present(BuildContext context, Widget page, {bool fullscreenDialog = true}) {
+  static present(BuildContext context, Widget page,
+      {bool fullscreenDialog = true}) {
     Navigator.push(
         context,
         CupertinoPageRoute(
@@ -30,7 +30,8 @@ class NavigatorUtil {
   /// - context 来源视图
   /// - page 对应界面
   /// - fullscreenDialog 是否全屏幕 默认为true
-  static Future<dynamic> presentAsync(BuildContext context, Widget page, {bool fullscreenDialog = true}) async {
+  static Future<dynamic> presentAsync(BuildContext context, Widget page,
+      {bool fullscreenDialog = true}) async {
     return await Navigator.push(
         context,
         CupertinoPageRoute(
@@ -45,6 +46,7 @@ class NavigatorUtil {
   }
 
   static pushAsyncMaterial(BuildContext context, Widget page) async {
-    return await Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+    return await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => page));
   }
 }

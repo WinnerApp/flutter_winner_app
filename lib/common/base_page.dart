@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/winner_color.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
-import 'package:flutter_winner_app/widget/winner_app_bar.dart';
-import 'package:flutter_winner_app/widget/winner_navigation_bar_title.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
-import 'base_view_model.dart';
 
 abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
     extends State<T> {

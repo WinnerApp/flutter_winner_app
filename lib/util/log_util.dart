@@ -1,7 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-
 class LogUtil {
   static LogUtil get _logUtil => LogUtil._();
   LogUtil._();

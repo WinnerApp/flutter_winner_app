@@ -1,8 +1,5 @@
-import 'package:flutter_winner_app/constant/winner_environment_url.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'app_environment.dart';
 
 class BaseUrl {
   /// 请求的基础地址
