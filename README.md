@@ -1,16 +1,22 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
 
 # 稳健医疗 Flutter App基础框架
+
+## 引入库
+
+```dart
+import 'package:flutter_winner_app/flutter_winner_app.dart'
+```
+
+## 启动 App
+
+```dart
+void main() async {
+	AppConfig config = AppConfig()
+  await WinnerApp(config).appMain(appInit:() async {
+    /// 初始化一些其他操作
+  })
+}
+```
 
