@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/global_config.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Style {}
@@ -71,7 +71,8 @@ extension WinnerTextStyle on Style {
   static Text text(
     String data, {
     Color? color,
-    double? fontSize, font,
+    double? fontSize,
+    font,
   }) {
     return Text(
       data,

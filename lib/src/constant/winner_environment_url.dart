@@ -1,4 +1,4 @@
-import 'package:flutter_winner_app/constant/base_url_enum.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 
 class WinnerEnvironmentUrl {
   final BaseUrl debug;

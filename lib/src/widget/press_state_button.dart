@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/global_config.dart';
-import 'package:flutter_winner_app/widget/style.dart';
-import 'package:flutter_winner_app/widget/winner_text_button.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 
 typedef PressStateButtonOnTap = Function(WinnerTextButtonController controller);
 

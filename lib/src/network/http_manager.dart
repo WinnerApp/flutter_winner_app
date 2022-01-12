@@ -3,12 +3,8 @@ import 'dart:core';
 import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_winner_app/network/proxy_config.dart';
-import 'package:flutter_winner_app/util/log_util.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'api.dart';
-import 'base_model.dart';
 
 /// @desc  封装 http 请求
 /// 1>：首先从本地数据库的缓存中读取数据，如果缓存有数据，就直接显示列表数据，同时去请求服务器，如果服务器返回数据了，这个时候就去比对服务器返回的数据与缓存中的数据，看是否一样；

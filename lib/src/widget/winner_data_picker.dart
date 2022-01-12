@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/widget/style.dart';
-import 'package:flutter_winner_app/widget/view_line.dart';
-import 'package:flutter_winner_app/widget/view_util.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:provider/provider.dart';
 
 class WinnerDataPicker extends StatefulWidget {

@@ -4,10 +4,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_winner_app/constant/app_environment.dart';
-import 'package:flutter_winner_app/constant/base_url_enum.dart';
-import 'package:flutter_winner_app/constant/global_config.dart';
-import 'package:flutter_winner_app/constant/winner_app_config.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -18,50 +14,52 @@ import 'package:flutter_ume_kit_perf/flutter_ume_kit_perf.dart'; // 性能插件
 import 'package:flutter_ume_kit_console/flutter_ume_kit_console.dart'; // debugPrint 插件包
 import 'package:flutter_ume_kit_dio/flutter_ume_kit_dio.dart';
 
-export 'common/base_page.dart';
-export 'common/base_view_model.dart';
-export 'common/winner_base_model.dart';
-export 'common/winner_store.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 
-export 'constant/app_environment.dart';
-export 'constant/base_url_enum.dart';
-export 'constant/global_config.dart';
-export 'constant/winner_color.dart';
-export 'constant/winner_environment_url.dart';
-export 'constant/winner_font.dart';
-export 'constant/winner_route.dart';
-export 'constant/sentry_host.dart';
-export 'constant/winner_app_config.dart';
+export 'src/common/base_page.dart';
+export 'src/common/base_view_model.dart';
+export 'src/common/winner_base_model.dart';
+export 'src/common/winner_store.dart';
 
-export 'extends/number_text_formatter.dart';
+export 'src/constant/app_environment.dart';
+export 'src/constant/base_url_enum.dart';
+export 'src/constant/global_config.dart';
+export 'src/constant/winner_color.dart';
+export 'src/constant/winner_environment_url.dart';
+export 'src/constant/winner_font.dart';
+export 'src/constant/winner_route.dart';
+export 'src/constant/sentry_host.dart';
+export 'src/constant/winner_app_config.dart';
 
-export 'manager/next_focus_node_manager.dart';
+export 'src/extends/number_text_formatter.dart';
 
-export 'network/api.dart';
-export 'network/base_model.dart';
-export 'network/http_manager.dart';
-export 'network/proxy_config.dart';
+export 'src/manager/next_focus_node_manager.dart';
 
-export 'util/event_manager.dart';
-export 'util/file_cache_util.dart';
-export 'util/log_util.dart';
-export 'util/navigator_util.dart';
-export 'util/object_util.dart';
-export 'util/phone_util.dart';
+export 'src/network/api.dart';
+export 'src/network/base_model.dart';
+export 'src/network/http_manager.dart';
+export 'src/network/proxy_config.dart';
 
-export 'widget/empty_view.dart';
-export 'widget/press_state_button.dart';
-export 'widget/style.dart';
-export 'widget/view_line.dart';
-export 'widget/view_util.dart';
-export 'widget/winner_app_bar.dart';
-export 'widget/winner_card.dart';
-export 'widget/winner_data_picker.dart';
-export 'widget/winner_list_foot_view.dart';
-export 'widget/winner_navigation_bar_title.dart';
-export 'widget/winner_pop_up_menu_button.dart';
-export 'widget/winner_text.dart';
-export 'widget/winner_text_button.dart';
+export 'src/util/event_manager.dart';
+export 'src/util/file_cache_util.dart';
+export 'src/util/log_util.dart';
+export 'src/util/navigator_util.dart';
+export 'src/util/object_util.dart';
+export 'src/util/phone_util.dart';
+
+export 'src/widget/empty_view.dart';
+export 'src/widget/press_state_button.dart';
+export 'src/widget/style.dart';
+export 'src/widget/view_line.dart';
+export 'src/widget/view_util.dart';
+export 'src/widget/winner_app_bar.dart';
+export 'src/widget/winner_card.dart';
+export 'src/widget/winner_data_picker.dart';
+export 'src/widget/winner_list_foot_view.dart';
+export 'src/widget/winner_navigation_bar_title.dart';
+export 'src/widget/winner_pop_up_menu_button.dart';
+export 'src/widget/winner_text.dart';
+export 'src/widget/winner_text_button.dart';
 
 typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
 typedef ConfigHTTPRequestPath = String Function(BaseUrl);

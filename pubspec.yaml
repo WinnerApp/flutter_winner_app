@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   provider: ^6.0.0
   loading_overlay: ^0.3.0
   json_annotation: ^4.3.0

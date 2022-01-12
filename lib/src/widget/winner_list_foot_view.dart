@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/widget/winner_text.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 
 class WinnerListFootView extends StatelessWidget {
   final bool isFinish;

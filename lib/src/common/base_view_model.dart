@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/global_config.dart';
-import 'package:flutter_winner_app/network/api.dart';
-import 'package:flutter_winner_app/widget/style.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'winner_base_model.dart';
 
 typedef CustomVerifyErrorMessage<T, M extends WinnerBaseModel<T>> = String?
     Function(M);

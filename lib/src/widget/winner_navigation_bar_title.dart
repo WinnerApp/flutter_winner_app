@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_app/constant/global_config.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 
 class WinnerNavigationBarTitle extends StatelessWidget {
   final String title;
