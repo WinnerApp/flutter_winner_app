@@ -55,7 +55,6 @@ class IconTitleEmptyView extends StatelessWidget {
   }
 }
 
-/// ![](https://gitee.com/joser_zhang/upic/raw/master/uPic/202201120908435.png)
 class EmptyDataView extends StatelessWidget {
   final Widget icon;
   final String description;
@@ -64,6 +63,16 @@ class EmptyDataView extends StatelessWidget {
   final double textButtonSpace;
   final TextStyle textStyle;
   final Widget button;
+
+  /// ![](https://gitee.com/joser_zhang/upic/raw/master/uPic/202201120908435.png)
+  /// ## 参数
+  /// - [icon] 空视图图片
+  /// - [description] 空视图描述文本
+  /// - [onTap] 空视图按钮点击回掉
+  /// - [button] 空视图按钮
+  /// - [iconTextSpace] 图标和描述的空隙 默认为 40
+  /// - [textButtonSpace] 描述和按钮的间隙 默认为 12
+  /// - [textStyle] 描述的样式 默认为文本颜色 0xFF8D8D8D 字体 14
   const EmptyDataView({
     Key? key,
     required this.icon,

@@ -43,8 +43,9 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
           body: Selector<M, bool>(
             selector: (p0, p1) => p1.isLoadingHUD,
             builder: (context, value, child) {
-              return loadingOverlay(context, value, _body(context));
+              return loadingOverlay(context, value, child ?? Container());
             },
+            child: _body(context),
           ),
         );
       },
