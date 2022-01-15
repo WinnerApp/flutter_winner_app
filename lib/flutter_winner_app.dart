@@ -4,6 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_winner_app/src/widget/winner_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -30,6 +31,7 @@ export 'src/constant/winner_font.dart';
 export 'src/constant/winner_route.dart';
 export 'src/constant/sentry_host.dart';
 export 'src/constant/winner_app_config.dart';
+export 'src/widget/winner_material_app.dart';
 
 export 'src/extends/number_text_formatter.dart';
 
@@ -152,18 +154,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: _routes(),
-      theme: ThemeData(
+    WinnerMaterialApp app = _materialApp(context);
+    Global().appConfig.configMaterialApp(app);
+    return app.materialApp;
+  }
+
+  WinnerMaterialApp _materialApp(BuildContext context) {
+    return WinnerMaterialApp()
+      ..debugShowCheckedModeBanner = false
+      ..routes = _routes()
+      ..theme = ThemeData(
         appBarTheme: AppBarTheme(
           color: Global().appConfig.colorTheme.appBarBackground,
           centerTitle: true,
           titleTextStyle: const TextStyle(color: Colors.black),
         ),
-      ),
-      home: Global().appConfig.appHome(context),
-    );
+      )
+      ..home = Global().appConfig.appHome(context);
   }
 
   Map<String, WidgetBuilder> _routes() {

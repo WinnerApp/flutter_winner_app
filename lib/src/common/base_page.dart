@@ -37,18 +37,26 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
           },
         );
         configPage(_pageController, context);
-        return Scaffold(
-          resizeToAvoidBottomInset: _pageController.resizeToAvoidBottomInset,
-          appBar: _appBar,
-          body: Selector<M, bool>(
-            selector: (p0, p1) => p1.isLoadingHUD,
-            builder: (context, value, child) {
-              return loadingOverlay(context, value, child ?? Container());
-            },
-            child: _body(context),
-          ),
-        );
+        return pageContent(context, _pageController);
       },
+    );
+  }
+
+  Widget pageContent(BuildContext context, BasePageController pageController) {
+    return scaffold(context, pageController);
+  }
+
+  Scaffold scaffold(BuildContext context, BasePageController pageController) {
+    return Scaffold(
+      resizeToAvoidBottomInset: _pageController.resizeToAvoidBottomInset,
+      appBar: _appBar,
+      body: Selector<M, bool>(
+        selector: (p0, p1) => p1.isLoadingHUD,
+        builder: (context, value, child) {
+          return loadingOverlay(context, value, child ?? Container());
+        },
+        child: _body(context),
+      ),
     );
   }
 
