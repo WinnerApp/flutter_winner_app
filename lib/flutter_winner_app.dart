@@ -32,6 +32,7 @@ export 'src/constant/winner_route.dart';
 export 'src/constant/sentry_host.dart';
 export 'src/constant/winner_app_config.dart';
 export 'src/widget/winner_material_app.dart';
+export 'src/widget/keep_alive_wrapper.dart';
 
 export 'src/extends/number_text_formatter.dart';
 
