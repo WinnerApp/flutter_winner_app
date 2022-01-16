@@ -68,6 +68,7 @@ typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
 typedef ConfigHTTPRequestPath = String Function(BaseUrl);
 typedef WinnerAppInit = Future<void> Function();
 
+//
 class WinnerApp<Config extends WinnerAppConfig> {
   /// Winner App的配置文件
   final Config appConfig;
