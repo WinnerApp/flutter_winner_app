@@ -12,11 +12,13 @@ class WinnerPopUpMenuButton<T extends WinnerPopUpMenuItem>
 
   /// 选中的回掉
   final Function(T)? onSelected;
+  final Widget Function(String title, BuildContext context)? itemBuilder;
   const WinnerPopUpMenuButton({
     Key? key,
     required this.viewModel,
     required this.menuTip,
     this.onSelected,
+    this.itemBuilder,
   }) : super(key: key);
 
   @override
@@ -32,25 +34,7 @@ class _WinnerPopUpMenuButtonState<T extends WinnerPopUpMenuItem>
       builder: (context, child) {
         WinnerPopUpMenuButtonViewModel<T> viewModel = context.watch();
         return PopupMenuButton<T>(
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  WinnerTextStyle.text(
-                    viewModel.selectValue?.menuItemTitle ?? widget.menuTip,
-                    fontSize: 14,
-                    color: const Color(0xFF666666),
-                  ),
-                  const Icon(
-                    Icons.arrow_drop_down,
-                    size: 20,
-                    color: Color(0xFF666666),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          child: _menuTitleWidget(context),
           onSelected: (model) {
             viewModel.selectValue = model;
             widget.onSelected?.call(model);
@@ -74,6 +58,38 @@ class _WinnerPopUpMenuButtonState<T extends WinnerPopUpMenuItem>
         );
       },
     );
+  }
+
+  String _menuTitle(BuildContext context) {
+    return widget.viewModel.selectValue?.menuItemTitle ?? widget.menuTip;
+  }
+
+  Widget _menuTitleWidget(BuildContext context) {
+    final itemBuilder = widget.itemBuilder;
+    if (itemBuilder != null) {
+      return itemBuilder(_menuTitle(context), context);
+    } else {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          children: [
+            Text(
+              _menuTitle(context),
+              overflow: TextOverflow.fade,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Color(0xFF666666),
+              ),
+            ),
+            const Icon(
+              Icons.arrow_drop_down,
+              size: 20,
+              color: Color(0xFF666666),
+            ),
+          ],
+        ),
+      );
+    }
   }
 }
 
