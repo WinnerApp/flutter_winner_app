@@ -33,16 +33,26 @@ abstract class BaseViewModel extends ChangeNotifier {
     M model = await Global().request(api: api);
     String? verifyMessage = verify?.call(model);
     if ((!model.isSuccess || verifyMessage != null) && isUseLoading) {
-      /// 如果请求错误 或者有自定义验证错误信息 则隐藏[HUD]
-      if (isUseLoading) hiddenHUD();
+      showRequestErrorMessage(
+        message: verifyMessage ?? model.message,
+        isUseLoading: isUseLoading,
+      );
       isLoading = false;
-
-      /// 展示错误信息
-      ToastStyle.showErrorToast(msg: verifyMessage ?? model.message);
       return null;
     }
     isLoading = false;
     return model;
+  }
+
+  void showRequestErrorMessage({
+    required String message,
+    required bool isUseLoading,
+  }) {
+    /// 如果请求错误 或者有自定义验证错误信息 则隐藏[HUD]
+    if (isUseLoading) hiddenHUD();
+
+    /// 展示错误信息
+    ToastStyle.showErrorToast(msg: message);
   }
 
   showHUD() {
