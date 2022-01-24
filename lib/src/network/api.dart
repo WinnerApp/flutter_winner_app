@@ -37,6 +37,9 @@ abstract class Api<C extends JsonConverter, M extends BaseModel> {
   /// Api的版本号
   String apiVersion = "1.0.0";
 
+  /// 自定义请求路径
+  bool get customPath => false;
+
   /// 获取缓存的唯一[Key]
   String get cacheKey {
     if (customCacheKey == null ||

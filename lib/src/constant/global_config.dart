@@ -18,6 +18,11 @@ class Global {
     required Api<C, M> api,
   }) async {
     Map<String, dynamic> headers = appConfig.httpHeaders;
+
+    /// 获取当前App配置
+    AppEnvironment environment = AppEnvironmentManager().appEnvironment;
+    BaseUrl url = await BaseUrl.currentUrl(environment);
+    httpManager.baseUrl = appConfig.configRequestPath(url, api);
     return httpManager.request(api, headers: headers);
   }
 
@@ -33,7 +38,7 @@ class Global {
     BaseUrl url = await BaseUrl.currentUrl(environment);
 
     /// 获取请求的[path]
-    String requestPath = config.configRequestPath(url);
+    String requestPath = config.configRequestPath(url, null);
 
     /// 初始化[HttpManager]
     httpManager = HttpManager(baseUrl: requestPath);
@@ -43,7 +48,7 @@ class Global {
   /// [url] 最新的请求地址
   void updateUrl(BaseUrl url) {
     /// 获取请求的[path]
-    String requestPath = appConfig.configRequestPath(url);
+    String requestPath = appConfig.configRequestPath(url, null);
 
     /// 重新设置[HttpManager]的请求路径
     httpManager.baseUrl = requestPath;

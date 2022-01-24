@@ -21,7 +21,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   Map<String, dynamic> get httpHeaders => {};
 
   /// 配置请求的[url] 可以根据[BaseUrl]自定义请求地址
-  String configRequestPath(BaseUrl url) => url.url;
+  String configRequestPath(BaseUrl url, Api? api) => url.url;
 
   /// 配置[SentryHost]
   SentryHost get sentryHost;
