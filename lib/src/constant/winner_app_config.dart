@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
-import 'package:flutter_winner_app/src/widget/winner_material_app.dart';
 import 'package:provider/single_child_widget.dart';
 
 abstract class WinnerAppConfig extends ChangeNotifier {
