@@ -23,9 +23,9 @@ class HttpManager {
   HttpManager({
     required this.baseUrl,
   }) : client = Dio(BaseOptions(connectTimeout: 30000, receiveTimeout: 3000)) {
-    client.interceptors.add(
-      LogInterceptor(requestBody: true, responseBody: true),
-    );
+    // client.interceptors.add(
+    //   LogInterceptor(requestBody: true, responseBody: true),
+    // );
 
     if (client.httpClientAdapter is DefaultHttpClientAdapter) {
       // 在调试模式下需要抓包调试，所以我们使用代理，并禁用HTTPS证书校验
