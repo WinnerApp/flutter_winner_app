@@ -15,6 +15,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.8.2"
+  basics:
+    dependency: transitive
+    description:
+      name: basics
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -155,49 +162,49 @@ packages:
       name: flutter_ume
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0+1"
   flutter_ume_kit_console:
     dependency: "direct dev"
     description:
       name: flutter_ume_kit_console
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   flutter_ume_kit_device:
     dependency: "direct dev"
     description:
       name: flutter_ume_kit_device
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   flutter_ume_kit_dio:
     dependency: "direct dev"
     description:
       name: flutter_ume_kit_dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   flutter_ume_kit_perf:
     dependency: "direct dev"
     description:
       name: flutter_ume_kit_perf
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   flutter_ume_kit_show_code:
     dependency: "direct dev"
     description:
       name: flutter_ume_kit_show_code
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   flutter_ume_kit_ui:
     dependency: "direct dev"
     description:
       name: flutter_ume_kit_ui
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0+1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -586,6 +593,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.8"
+  touch_indicator:
+    dependency: transitive
+    description:
+      name: touch_indicator
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.0"
   tuple:
     dependency: transitive
     description:

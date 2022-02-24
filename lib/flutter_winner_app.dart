@@ -121,7 +121,8 @@ class WinnerApp<Config extends WinnerAppConfig> {
         ..register(Performance())
         ..register(Console())
         ..register(DioInspector(dio: dio)); // 传入你的 Dio 实例
-      runApp(injectUMEWidget(
+      Global().appConfig.configUMEPlugin(PluginManager.instance);
+      runApp(UMEWidget(
         child: _mainWidget(),
         enable: true,
       ));
