@@ -160,4 +160,12 @@ class WinnerPopUpMenuButtonViewModel<T extends WinnerPopUpMenuItem>
     _selectValue = value;
     notifyListeners();
   }
+
+  void reset() {
+    if (list.isEmpty) {
+      selectValue = null;
+    } else {
+      selectValue = list.first;
+    }
+  }
 }
