@@ -111,6 +111,26 @@ class WinnerPopUpMenuTextItem extends WinnerPopUpMenuItem {
   String get menuItemTitle => title;
 }
 
+class WinnerPopUpMenuCustonItem<T> extends WinnerPopUpMenuItem {
+  final T model;
+  final bool Function(T left, T right) isEqualBuilder;
+  final String Function(T model) menuItemTitleBuilder;
+  WinnerPopUpMenuCustonItem(
+    this.model,
+    this.isEqualBuilder,
+    this.menuItemTitleBuilder,
+  );
+  @override
+  bool isEqual(WinnerPopUpMenuItem item) {
+    WinnerPopUpMenuCustonItem<T>? right = item as WinnerPopUpMenuCustonItem<T>?;
+    if (right == null) return false;
+    return isEqualBuilder(model, right.model);
+  }
+
+  @override
+  String get menuItemTitle => menuItemTitleBuilder(model);
+}
+
 class WinnerPopUpMenuButtonViewModel<T extends WinnerPopUpMenuItem>
     extends ChangeNotifier {
   List<T> _list = [];
