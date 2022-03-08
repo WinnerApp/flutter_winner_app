@@ -48,6 +48,7 @@ export 'src/util/log_util.dart';
 export 'src/util/navigator_util.dart';
 export 'src/util/object_util.dart';
 export 'src/util/phone_util.dart';
+export 'src/util/custom_plugin.dart';
 
 export 'src/widget/empty_view.dart';
 export 'src/widget/press_state_button.dart';
