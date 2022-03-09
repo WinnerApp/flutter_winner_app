@@ -30,7 +30,7 @@ class CustomPlugin extends Pluggable {
 
   @override
   ImageProvider<Object> get iconImageProvider =>
-      image ?? const AssetImage("images/ume.png");
+      image ?? const AssetImage("packages/flutter_winner_app/images/ume.png");
 
   @override
   String get name => pluginName;
