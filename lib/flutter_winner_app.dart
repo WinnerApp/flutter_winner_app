@@ -64,6 +64,7 @@ export 'src/widget/winner_pop_up_menu_button.dart';
 export 'src/widget/winner_text.dart';
 export 'src/widget/winner_text_button.dart';
 export 'src/widget/tab_page.dart';
+export 'src/widget/start_end_view.dart';
 
 typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
 typedef ConfigHTTPRequestPath = String Function(BaseUrl);
