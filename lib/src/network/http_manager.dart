@@ -22,7 +22,7 @@ class HttpManager {
 
   HttpManager({
     required this.baseUrl,
-  }) : client = Dio(BaseOptions(connectTimeout: 30000, receiveTimeout: 3000)) {
+  }) : client = Dio(BaseOptions(connectTimeout: 30000, receiveTimeout: 30000)) {
     // client.interceptors.add(
     //   LogInterceptor(requestBody: true, responseBody: true),
     // );
@@ -90,7 +90,10 @@ class HttpManager {
         options: options,
         cancelToken: cancelToken,
       );
-      LogUtil().v("✅:url:$url\n${json.encode(response.data)}");
+      String jsonText = json.encode(response.data);
+      if (jsonText.length < 10000) {
+        LogUtil().v("✅:url:$url\n${json.encode(response.data)}");
+      }
       M model = api.model;
       model.response = response;
       model.parseData(response.data ?? {}, api);

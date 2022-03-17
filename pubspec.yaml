@@ -1,7 +1,7 @@
 name: flutter_winner_app
 description: 稳健医疗 Flutter App基础框架.
 version: 0.0.1
-homepage:
+homepage: flutter_winner_app
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
