@@ -66,6 +66,8 @@ export 'src/widget/winner_text_button.dart';
 export 'src/widget/tab_page.dart';
 export 'src/widget/start_end_view.dart';
 
+export 'src/model/page_model.dart';
+
 typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
 typedef ConfigHTTPRequestPath = String Function(BaseUrl);
 typedef WinnerAppInit = Future<void> Function();
