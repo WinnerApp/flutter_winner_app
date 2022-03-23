@@ -4,19 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-abstract class AppPullRefreshPage<T extends StatefulWidget,
-    M extends AppPullRefreshPageViewModel> extends BasePage<T, M> {
-  @override
-  void initState() {
-    super.initState();
-    if (viewModel.initAutoRefresh) {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-        viewModel.refreshController.requestRefresh();
-      });
-    }
-  }
-
-  Widget refreshContent(BuildContext context) {
+abstract class WinnerPullRefreshPage<T extends StatefulWidget,
+    M extends WinnerPullRefreshPageViewModel> {
+  Widget refreshContent(BuildContext context, M viewModel) {
     return Consumer<M>(
       builder: (context, value, child) {
         return SmartRefresher(
@@ -38,10 +28,10 @@ abstract class AppPullRefreshPage<T extends StatefulWidget,
   ListView listView(BuildContext context);
 }
 
-abstract class AppPullRefreshPageViewModel extends BaseViewModel {
+abstract class WinnerPullRefreshPageViewModel extends BaseViewModel {
   late RefreshController refreshController;
 
-  AppPullRefreshPageViewModel({RefreshController? controller})
+  WinnerPullRefreshPageViewModel({RefreshController? controller})
       : refreshController = controller ?? RefreshController();
 
   bool _enablePullUp = true;
@@ -72,11 +62,12 @@ abstract class AppPullRefreshPageViewModel extends BaseViewModel {
   }
 }
 
-abstract class AppListRefreshPageViewModel<
+abstract class WinnerListRefreshPageViewModel<
     Response extends JsonConverter<Response, Map<String, dynamic>>,
+    ListModel,
     Model extends WinnerBaseModel<Response>,
-    A extends Api<Response, Model>> extends AppPullRefreshPageViewModel {
-  AppListRefreshPageViewModel({
+    A extends Api<Response, Model>> extends WinnerPullRefreshPageViewModel {
+  WinnerListRefreshPageViewModel({
     this.pageSize = 20,
     RefreshController? refreshController,
   }) : super(controller: refreshController);
@@ -85,12 +76,10 @@ abstract class AppListRefreshPageViewModel<
   int _pageNumber = 1;
   int get pageNumber => _pageNumber;
 
-  set pageNumber(int value) => _pageNumber = value;
+  List<ListModel> _list = [];
+  List<ListModel> get list => _list;
 
-  List<Response> _list = [];
-  List<Response> get list => _list;
-
-  set list(List<Response> value) {
+  set list(List<ListModel> value) {
     if (list == value) return;
     _list = value;
     notifyListeners();
@@ -98,8 +87,6 @@ abstract class AppListRefreshPageViewModel<
 
   PageModel? _pageModel;
   PageModel? get pageModel => _pageModel;
-
-  set pageModel(PageModel? value) => _pageModel = value;
 
   @override
   Future<void> loadingMoreData() async {
@@ -115,9 +102,9 @@ abstract class AppListRefreshPageViewModel<
 
   Future<void> _loadData(bool isRefresh) async {
     if (isRefresh) {
-      pageNumber = 1;
+      _pageNumber = 1;
     } else {
-      pageNumber += 1;
+      _pageNumber += 1;
     }
 
     final api = configApi();
@@ -129,17 +116,20 @@ abstract class AppListRefreshPageViewModel<
       _list = [];
       return;
     }
+    final newList = listFromModel(model) ?? [];
     if (isRefresh) {
-      _list = [...model.list ?? []];
+      _list = [...newList];
     } else {
-      _list.addAll(model.list ?? []);
+      _list.addAll(newList);
       _list = [..._list];
     }
-    pageModel = pageModelFromModel(model);
+    _pageModel = pageModelFromModel(model);
     _updateEnablePullUp();
   }
 
   PageModel? pageModelFromModel(Model model);
+
+  List<ListModel>? listFromModel(Model model);
 
   void _updateEnablePullUp() {
     PageModel? pageModel = this.pageModel;
