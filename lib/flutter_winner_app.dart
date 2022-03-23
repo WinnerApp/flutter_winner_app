@@ -21,6 +21,7 @@ export 'src/common/base_view_model.dart';
 export 'src/common/winner_base_model.dart';
 export 'src/common/winner_store.dart';
 export 'src/common/winner_pull_refresh_page.dart';
+export 'src/common/custom_selector.dart';
 
 export 'src/constant/app_environment.dart';
 export 'src/constant/base_url_enum.dart';
