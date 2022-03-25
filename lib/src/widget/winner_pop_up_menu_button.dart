@@ -8,6 +8,7 @@ class WinnerPopUpMenuButton<T extends WinnerPopUpMenuItem>
 
   /// 提示语
   final String menuTip;
+  final Color? color;
 
   /// 选中的回掉
   final Function(T)? onSelected;
@@ -18,6 +19,7 @@ class WinnerPopUpMenuButton<T extends WinnerPopUpMenuItem>
     required this.menuTip,
     this.onSelected,
     this.itemBuilder,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -75,15 +77,15 @@ class _WinnerPopUpMenuButtonState<T extends WinnerPopUpMenuItem>
             Text(
               _menuTitle(context),
               overflow: TextOverflow.fade,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
-                color: Color(0xFF666666),
+                color: widget.color ?? const Color(0xFF666666),
               ),
             ),
-            const Icon(
+            Icon(
               Icons.arrow_drop_down,
               size: 20,
-              color: Color(0xFF666666),
+              color: widget.color ?? const Color(0xFF666666),
             ),
           ],
         ),
