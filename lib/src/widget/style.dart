@@ -40,8 +40,16 @@ extension ToastStyle on Style {
 
   /// 展示错误消息
   /// [msg] 错误消息内容
-  static Future<void> showErrorToast({required String msg}) async {
+  static showErrorToast({required String msg}) {
     Global().appConfig.showErrorToast(msg);
+  }
+
+  /// 展示异步错误消息 比如处理错误弹框，点击按钮之后的回掉
+  static Future<void> showAsyncErrorToast({
+    required BuildContext context,
+    required String msg,
+  }) async {
+    return Global().appConfig.showAsyncErrorToast(context, msg);
   }
 
   /// 展示成功消息

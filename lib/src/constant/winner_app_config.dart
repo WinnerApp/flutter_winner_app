@@ -50,6 +50,10 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   /// 展示错误[Toast]
   void showErrorToast(String message) {}
 
+  /// 展示错误信息 点击确定按钮之后的回掉
+  Future<void> showAsyncErrorToast(
+      BuildContext context, String message) async {}
+
   /// 展示成功[Toast]
   void showSuccessToast(String message) {}
 
