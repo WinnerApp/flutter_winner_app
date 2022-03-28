@@ -19,10 +19,14 @@ abstract class WinnerPullRefreshPage<T extends StatefulWidget,
           onLoading: () async {
             await viewModel.onLoading();
           },
-          child: listView(context),
+          child: refreshChildContentView(context),
         );
       },
     );
+  }
+
+  Widget refreshChildContentView(BuildContext context) {
+    return listView(context);
   }
 
   ListView listView(BuildContext context);
