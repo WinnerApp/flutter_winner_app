@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
@@ -67,4 +68,15 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 配置 UME插件
   void configUMEPlugin(PluginManager manager) => {};
+
+  /// 自定义配置 SystemChrome
+  void configSystemChrome() {
+    /// 设置导航栏的样式
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        systemNavigationBarDividerColor: Colors.white,
+      ),
+    );
+  }
 }

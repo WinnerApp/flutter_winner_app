@@ -98,13 +98,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
       appRunner: _sentryAppRunner,
     );
 
-    /// 设置导航栏的样式
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        systemNavigationBarDividerColor: Colors.white,
-      ),
-    );
+    appConfig.configSystemChrome();
   }
 
   /// [Sentry]的地址
