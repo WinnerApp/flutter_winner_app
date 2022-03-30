@@ -5,6 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 typedef CustomVerifyErrorMessage<T, M extends WinnerBaseModel<T>> = String?
     Function(M);
 
+typedef CustomRequestSuccess<T> = bool Function(T model);
+
 /// 基于[ChangeNotifier] 的 ViewModel
 abstract class BaseViewModel extends ChangeNotifier {
   /// 是否正在加载 默认为 [false]
@@ -25,6 +27,7 @@ abstract class BaseViewModel extends ChangeNotifier {
     required Api<C, M> api,
     CustomVerifyErrorMessage<T, M>? verify,
     bool isUseLoading = true,
+    CustomRequestSuccess<M>? customRequestSuccess,
   }) async {
     isLoading = true;
 
@@ -32,7 +35,8 @@ abstract class BaseViewModel extends ChangeNotifier {
     if (!isLoadingHUD && isUseLoading) showHUD();
     M model = await Global().request(api: api);
     String? verifyMessage = verify?.call(model);
-    if ((!model.isSuccess || verifyMessage != null) && isUseLoading) {
+    final isSuccess = customRequestSuccess?.call(model) ?? model.isSuccess;
+    if ((!isSuccess || verifyMessage != null) && isUseLoading) {
       showRequestErrorMessage(
         message: verifyMessage ?? model.message,
         isUseLoading: isUseLoading,
