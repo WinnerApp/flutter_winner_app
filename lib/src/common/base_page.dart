@@ -67,7 +67,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
 
   Widget _contentView(BuildContext context) {
     return Container(
-      color: WColor().background,
+      color: Global().appConfig.colorTheme.background,
       child: buildPage(context),
     );
   }
