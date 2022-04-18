@@ -67,7 +67,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
 
   Widget _contentView(BuildContext context) {
     return Container(
-      color: Global().appConfig.colorTheme.background,
+      color: backgroundColor,
       child: buildPage(context),
     );
   }
@@ -88,6 +88,8 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
       return _contentView(context);
     }
   }
+
+  Color get backgroundColor => Global().appConfig.colorTheme.background;
 }
 
 class BasePageController {
