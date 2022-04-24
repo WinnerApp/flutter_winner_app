@@ -94,7 +94,15 @@ class WinnerApp<Config extends WinnerAppConfig> {
 
     /// 初始化[App]
     await SentryFlutter.init(
-      (option) => option.dsn = _sentryHost,
+      (option) {
+        option.dsn = _sentryHost;
+        option.beforeSend = (event, {hint}) {
+          if (AppEnvironmentManager().appEnvironment == AppEnvironment.debug) {
+            return null;
+          }
+          return event;
+        };
+      },
       appRunner: _sentryAppRunner,
     );
 
