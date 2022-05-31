@@ -38,6 +38,7 @@ class HttpManager {
           //代理工具会提供一个抓包的自签名证书，会通不过证书校验，所以我们禁用证书校验
           client.badCertificateCallback =
               (X509Certificate cert, String host, int port) => true;
+          return null;
         };
       } else {
         (client.httpClientAdapter as DefaultHttpClientAdapter)
@@ -51,6 +52,7 @@ class HttpManager {
               return false;
             }
           };
+          return null;
         };
       }
     }
@@ -68,7 +70,18 @@ class HttpManager {
     //设置默认值
     var params = api.params;
     var method = api.method;
-    var options = api.options ?? Options(method: method);
+    var extra = {
+      "isUseCache": api.isUseCache,
+      "cacheKey": api.cacheKey,
+      "cacheTime": api.cacheTime,
+    };
+    var options = Options(method: method, extra: extra);
+    if (api.options != null) {
+      options = api.options!.copyWith(
+        method: api.options!.method ?? method,
+        extra: options.extra,
+      );
+    }
     if (headers != null) {
       options.headers ??= {};
       options.headers!.addEntries(headers.entries);

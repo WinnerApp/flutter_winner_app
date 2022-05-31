@@ -50,6 +50,8 @@ abstract class Api<C extends JsonConverter, M extends BaseModel> {
       return customCacheKey!.key;
     }
   }
+  /// 缓存的时间 默认为30 秒
+  int get cacheTime => 30;
 }
 
 /// 默认的解析器 为了支持基本的类型
