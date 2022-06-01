@@ -20,7 +20,7 @@ dependencies:
   event_bus: ^2.0.0
   fluttertoast: ^8.0.8
   sentry_flutter: ^6.0.1
-  device_preview: ^1.0.0
+  device_preview: 1.0.0
   pull_to_refresh: ^2.0.0
 dev_dependencies:
   flutter_test:
