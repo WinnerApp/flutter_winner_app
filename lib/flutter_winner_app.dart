@@ -74,10 +74,14 @@ typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
 typedef ConfigHTTPRequestPath = String Function(BaseUrl);
 typedef WinnerAppInit = Future<void> Function();
 
+///默认全局路由观测者
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+
 //
 class WinnerApp<Config extends WinnerAppConfig> {
   /// Winner App的配置文件
   final Config appConfig;
+
   WinnerApp(this.appConfig);
 
   Future<void> appMain({
@@ -181,7 +185,11 @@ class MyApp extends StatelessWidget {
           titleTextStyle: const TextStyle(color: Colors.black),
         ),
       )
-      ..home = Global().appConfig.appHome(context);
+      ..home = Global().appConfig.appHome(context)
+      ..navigatorObservers = [
+        routeObserver,
+        ...Global().appConfig.navigatorObservers
+      ];
   }
 
   Map<String, WidgetBuilder> _routes() {
