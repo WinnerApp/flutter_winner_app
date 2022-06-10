@@ -77,6 +77,7 @@ typedef WinnerAppInit = Future<void> Function();
 class WinnerApp<Config extends WinnerAppConfig> {
   /// Winner App的配置文件
   final Config appConfig;
+
   WinnerApp(this.appConfig);
 
   Future<void> appMain({
@@ -90,6 +91,9 @@ class WinnerApp<Config extends WinnerAppConfig> {
 
     /// 执行外部的初始化
     await appInit?.call();
+
+    /// 加载上一次保存的语系
+    await appConfig.initLocale();
 
     if (appConfig.isEnableSentry) {
       /// 初始化[App]
@@ -144,8 +148,20 @@ class WinnerApp<Config extends WinnerAppConfig> {
   }
 
   Widget _mainWidget() {
-    List<SingleChildWidget> providers = appConfig.providers;
-    providers.add(ChangeNotifierProvider.value(value: appConfig));
+    return MyApp<Config>();
+  }
+}
+
+class MyApp<Config extends WinnerAppConfig> extends StatelessWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<SingleChildWidget> providers = Global().appConfig.providers;
+    //此处需转换成子类再添加到provider
+    providers.add(ChangeNotifierProvider.value(value: Global().appConfig as Config));
     return MultiProvider(
       providers: providers,
       child: Selector<Config, bool>(
@@ -154,28 +170,27 @@ class WinnerApp<Config extends WinnerAppConfig> {
           return DevicePreview(
             enabled: data,
             builder: (context) {
-              return const MyApp();
+              return Selector<Config, Locale?>(
+                builder: (context, _, __) {
+                  WinnerMaterialApp app = _materialApp(context);
+                  Global().appConfig.configMaterialApp(app);
+                  return app.materialApp;
+                },
+                selector: (context, value) => value.locale,
+              );
             },
           );
         },
       ),
     );
   }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    WinnerMaterialApp app = _materialApp(context);
-    Global().appConfig.configMaterialApp(app);
-    return app.materialApp;
-  }
 
   WinnerMaterialApp _materialApp(BuildContext context) {
     return WinnerMaterialApp()
+      ..locale = Global().appConfig.locale
+      ..localizationsDelegates = Global().appConfig.localizationsDelegates
+      ..supportedLocales = Global().appConfig.supportedLocales
+      ..localeResolutionCallback = Global().appConfig.localeResolutionCallback
       ..debugShowCheckedModeBanner = false
       ..routes = _routes()
       ..theme = ThemeData(

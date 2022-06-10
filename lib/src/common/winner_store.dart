@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+export 'package:flutter_winner_app/src/constant/winner_app_preference_key.dart';
 
 abstract class WinnerStore {}
 
@@ -27,7 +28,8 @@ class WinnerPreferenceStore extends WinnerStore {
 
 class PreferenceKey {
   final String value;
-  PreferenceKey(this.value);
+
+  const PreferenceKey(this.value);
 }
 
 extension WinnerPreferenceGetStore on WinnerPreferenceStore {
