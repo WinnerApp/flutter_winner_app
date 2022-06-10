@@ -91,19 +91,24 @@ class WinnerApp<Config extends WinnerAppConfig> {
     /// 执行外部的初始化
     await appInit?.call();
 
-    /// 初始化[App]
-    await SentryFlutter.init(
-      (option) {
-        option.dsn = _sentryHost;
-        option.beforeSend = (event, {hint}) {
-          if (AppEnvironmentManager().appEnvironment == AppEnvironment.debug) {
-            return null;
-          }
-          return event;
-        };
-      },
-      appRunner: _sentryAppRunner,
-    );
+    if (appConfig.isEnableSentry) {
+      /// 初始化[App]
+      await SentryFlutter.init(
+        (option) {
+          option.dsn = _sentryHost;
+          option.beforeSend = (event, {hint}) {
+            if (AppEnvironmentManager().appEnvironment ==
+                AppEnvironment.debug) {
+              return null;
+            }
+            return event;
+          };
+        },
+        appRunner: _sentryAppRunner,
+      );
+    } else {
+      _sentryAppRunner();
+    }
 
     appConfig.configSystemChrome();
   }

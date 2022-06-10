@@ -79,4 +79,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
       ),
     );
   }
+
+  /// 是否使用 Sentry 服务 关闭 则不会掉用 sentryHost
+  bool get isEnableSentry => true;
 }
