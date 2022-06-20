@@ -5,7 +5,7 @@ class WinnerCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? margin;
   final double? radius;
-
+  final double? height;
   /// 卡片的背景颜色
   final Color? backgroundColor;
   const WinnerCard({
@@ -14,6 +14,7 @@ class WinnerCard extends StatelessWidget {
     this.margin,
     this.radius,
     this.backgroundColor,
+    this.height
   }) : super(key: key);
 
   @override
