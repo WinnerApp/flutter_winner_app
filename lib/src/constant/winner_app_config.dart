@@ -30,6 +30,9 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   /// 配置首页配置[providers]
   List<SingleChildWidget> get providers => [];
 
+  /// 配置app路由观测者[navigatorObservers]
+  List<NavigatorObserver> get navigatorObservers => [];
+
   /// 是否开启设备预览
   bool _isEnablePreviewDevice = false;
   bool get isEnablePreviewDevice => _isEnablePreviewDevice;
