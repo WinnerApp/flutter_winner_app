@@ -53,6 +53,10 @@ class CustomSelectorModel<T> {
     _value = value;
   }
 
+  update(){
+    _version++;
+  }
+
   bool shouldRebuild(CustomSelectorModel previous) {
     bool isUpdate = _version != _lastVersion;
     if (isUpdate) {
@@ -76,6 +80,25 @@ class CustomSelectorListModel<T> {
   set value(List<T> value) {
     _version++;
     _value = value;
+  }
+
+  update(){
+    _version++;
+  }
+
+  add(T data){
+    _value.add(data);
+    _version++;
+  }
+
+  removeAt(int index){
+    _value.removeAt(index);
+    _version++;
+  }
+
+  remove(T data){
+    _value.remove(data);
+    _version++;
   }
 
   bool shouldRebuild(CustomSelectorListModel previous) {
