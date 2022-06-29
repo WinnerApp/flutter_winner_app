@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:json_annotation/json_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class WinnerStore {}
@@ -66,6 +69,26 @@ extension WinnerPreferenceGetStore on WinnerPreferenceStore {
       (preferences) => preferences.getStringList(key.value),
     );
   }
+
+  Future<Map?> getMap() async {
+    return await _get((preferences) {
+      final jsonText = preferences.getString(key.value);
+      if (jsonText == null) return null;
+      return json.decode(jsonText) as Map?;
+    });
+  }
+
+  Future<T?> getModel<T>(T? Function(Map map) toModel) async {
+    final map = await getMap();
+    if (map == null) return null;
+    return toModel.call(map);
+  }
+
+  Future<T?> getConverModel<T extends JsonConverter>(T emptyModel) async {
+    return await getModel((map) {
+      return emptyModel.fromJson(map) as T?;
+    });
+  }
 }
 
 extension WinnerPreferenceSetStore on WinnerPreferenceStore {
@@ -100,7 +123,33 @@ extension WinnerPreferenceSetStore on WinnerPreferenceStore {
   Future<bool> setStringList(List<String> value) async {
     return await _set(
       key,
-      (preferences) async => preferences.setStringList(key.value, value),
+      (preferences) async => await preferences.setStringList(key.value, value),
     );
+  }
+
+  Future<bool> setMap(Map map) async {
+    return await _set(key, (preferences) async {
+      final jsonText = json.encode(map);
+      return await preferences.setString(key.value, jsonText);
+    });
+  }
+
+  Future<bool> setModel<T>(T model, Map? Function(T model) toMap) async {
+    final map = toMap.call(model);
+    if (map == null) return false;
+    return setMap(map);
+  }
+
+  Future<bool> setConverModel<T extends JsonConverter>(T model) async {
+    return setModel<T>(model, (model) {
+      return model.toJson(model) as Map?;
+    });
+  }
+}
+
+extension WinnerPreferenceRemoveStore on WinnerPreferenceStore {
+  Future<void> remove() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.remove(key.value);
   }
 }
