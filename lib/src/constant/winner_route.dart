@@ -8,6 +8,9 @@ class WinnerRoute {
   /// 路径名称
   final String name;
 
+  ///模块类型
+  final String moduleType;
+
   /// 路由实现
   final WidgetBuilder routeMake;
 
@@ -15,6 +18,7 @@ class WinnerRoute {
   WinnerRoute(
     this.path,
     this.name,
+    this.moduleType,
     this.routeMake,
   );
 }
