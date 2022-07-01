@@ -155,6 +155,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
   Widget _mainWidget() {
     List<SingleChildWidget> providers = appConfig.providers;
     providers.add(ChangeNotifierProvider.value(value: appConfig));
+    providers.add(ChangeNotifierProvider.value(value: AppCacheManager()));
     return MultiProvider(
       providers: providers,
       child: Selector<Config, bool>(
