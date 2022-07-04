@@ -15,7 +15,8 @@ class AppCacheManager extends ChangeNotifier {
     if (cacheData != null) {
       final currentUrl = Global().httpManager.baseUrl;
       final store = WinnerPreferenceStore(PreferenceKey(currentUrl));
-      _cacheData = await store.getConverModel(cacheData);
+      final defaultCacheData = cacheData.fromJson(<String, dynamic>{});
+      _cacheData = await store.getConverModel(cacheData) ?? defaultCacheData;
     }
     notifyListeners();
   }
@@ -23,5 +24,11 @@ class AppCacheManager extends ChangeNotifier {
   T? getCacheData<T extends JsonConverter>() {
     if (_cacheData == null) return null;
     return _cacheData as T?;
+  }
+
+  Future<bool> saveCacheData<T extends JsonConverter>(T model) async {
+    final currentUrl = Global().httpManager.baseUrl;
+    final store = WinnerPreferenceStore(PreferenceKey(currentUrl));
+    return await store.setConverModel(model);
   }
 }
