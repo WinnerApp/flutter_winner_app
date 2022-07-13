@@ -111,11 +111,7 @@ abstract class WinnerListRefreshPageViewModel<
       _pageNumber += 1;
     }
 
-    final api = configApi();
-    Model? model = await request(
-      api: api,
-      isUseLoading: false,
-    );
+    Model? model = await loadData();
     if (model == null) {
       _list = [];
       return;
@@ -146,5 +142,14 @@ abstract class WinnerListRefreshPageViewModel<
       return;
     }
     enablePullUp = true;
+  }
+
+  Future<Model?> loadData() async {
+    return await loadList();
+  }
+
+  Future<Model?> loadList() async {
+    final api = configApi();
+    return await request(api: api);
   }
 }
