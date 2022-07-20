@@ -150,6 +150,6 @@ abstract class WinnerListRefreshPageViewModel<
 
   Future<Model?> loadList() async {
     final api = configApi();
-    return await request(api: api);
+    return await request(api: api, isUseLoading: false);
   }
 }
