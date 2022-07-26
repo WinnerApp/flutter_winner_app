@@ -71,16 +71,32 @@ export 'src/model/page_model.dart';
 export 'src/manager/app_cache_manager.dart';
 export 'src/page/server_config/server_config_page.dart';
 
-typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
-typedef ConfigHTTPRequestPath = String Function(BaseUrl);
+/// 配置请求的 Headers
+/// [map] 当前请求的请求头
+typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic> map);
+
+/// 配置请求的地址
+/// [url] 当前请求的地址
+typedef ConfigHTTPRequestPath = String Function(BaseUrl url);
+
+/// App 进入页面之前异步初始化方法
 typedef WinnerAppInit = Future<void> Function();
 
 ///默认全局路由观测者
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
-//
+/// 用于初始化 Flutter App
+/// ```dart
+/// void main() async {
+///   /// AppConfig 为 WinnerAppConfig 的子类，用于配置一些需要的配置
+///   AppConfig config = AppConfig()
+///   await WinnerApp(config).appMain(appInit:() async {
+///     /// 初始化一些其他操作
+///   })
+/// }
+/// ```
 class WinnerApp<Config extends WinnerAppConfig> {
-  /// Winner App的配置文件
+  /// Winner App的配置文件 需要自定义子类
   final Config appConfig;
 
   WinnerApp(this.appConfig);
