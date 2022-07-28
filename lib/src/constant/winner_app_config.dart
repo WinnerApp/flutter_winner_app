@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
 
@@ -64,7 +65,9 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 展示错误信息 点击确定按钮之后的回掉
   Future<void> showAsyncErrorToast(
-      BuildContext context, String message) async {}
+    BuildContext context,
+    String message,
+  ) async {}
 
   /// 展示成功[Toast]
   void showSuccessToast(String message) {}
@@ -93,4 +96,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 是否使用 Sentry 服务 关闭 则不会掉用 sentryHost
   bool get isEnableSentry => true;
+
+  /// 创建对应 App 缓存的对象
+  JsonConverter? get getNewCacheConverter => null;
 }

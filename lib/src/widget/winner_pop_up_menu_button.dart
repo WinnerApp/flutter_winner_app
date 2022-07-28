@@ -13,6 +13,9 @@ class WinnerPopUpMenuButton<T extends WinnerPopUpMenuItem>
   /// 选中的回掉
   final Function(T)? onSelected;
   final Widget Function(String title, BuildContext context)? itemBuilder;
+
+  final bool enabled;
+
   const WinnerPopUpMenuButton({
     Key? key,
     required this.viewModel,
@@ -20,6 +23,7 @@ class WinnerPopUpMenuButton<T extends WinnerPopUpMenuItem>
     this.onSelected,
     this.itemBuilder,
     this.color,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -35,6 +39,7 @@ class _WinnerPopUpMenuButtonState<T extends WinnerPopUpMenuItem>
       builder: (context, child) {
         WinnerPopUpMenuButtonViewModel<T> viewModel = context.watch();
         return PopupMenuButton<T>(
+          enabled: widget.enabled,
           child: _menuTitleWidget(context),
           onSelected: (model) {
             viewModel.selectValue = model;

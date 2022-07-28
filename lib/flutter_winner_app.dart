@@ -68,6 +68,8 @@ export 'src/widget/tab_page.dart';
 export 'src/widget/start_end_view.dart';
 
 export 'src/model/page_model.dart';
+export 'src/manager/app_cache_manager.dart';
+export 'src/page/server_config/server_config_page.dart';
 
 typedef ConfigHTTPRequestHeaders = void Function(Map<String, dynamic>);
 typedef ConfigHTTPRequestPath = String Function(BaseUrl);
@@ -91,6 +93,9 @@ class WinnerApp<Config extends WinnerAppConfig> {
 
     /// 初始化[HttpManager]
     await Global().initHttpManager(appConfig);
+
+    /// 初始化 App 存在本地的缓存
+    await AppCacheManager().initCacheData();
 
     /// 执行外部的初始化
     await appInit?.call();
@@ -150,6 +155,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
   Widget _mainWidget() {
     List<SingleChildWidget> providers = appConfig.providers;
     providers.add(ChangeNotifierProvider.value(value: appConfig));
+    providers.add(ChangeNotifierProvider.value(value: AppCacheManager()));
     return MultiProvider(
       providers: providers,
       child: Selector<Config, bool>(

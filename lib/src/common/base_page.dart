@@ -50,6 +50,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
     return Scaffold(
       resizeToAvoidBottomInset: _pageController.resizeToAvoidBottomInset,
       appBar: _appBar,
+      backgroundColor: backgroundColor,
       body: Selector<M, bool>(
         selector: (p0, p1) => p1.isLoadingHUD,
         builder: (context, value, child) {
