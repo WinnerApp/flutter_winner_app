@@ -30,7 +30,6 @@ extension ToastStyle on Style {
       msg: msg,
       toastLength: toastLength,
       gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
       backgroundColor:
           backgroundColor ?? Global().appConfig.colorTheme.toastBackground,
       textColor: Colors.white,

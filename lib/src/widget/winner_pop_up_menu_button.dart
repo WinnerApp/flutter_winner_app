@@ -47,7 +47,7 @@ class _WinnerPopUpMenuButtonState<T extends WinnerPopUpMenuItem>
           },
           itemBuilder: (context) {
             List<CheckedPopupMenuItem<T>> items = [];
-            for (var element in viewModel.list) {
+            for (final element in viewModel.list) {
               bool checked = false;
               if (viewModel.selectValue != null) {
                 checked = viewModel.selectValue!.isEqual(element);

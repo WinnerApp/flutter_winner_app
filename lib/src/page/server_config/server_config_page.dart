@@ -21,13 +21,13 @@ class _ServerConfigPageState
       (value) => value.currentIndex,
     );
     return ListView.separated(
-      itemBuilder: ((context, index) {
+      itemBuilder: (context, index) {
         bool selected = index == currentIndex;
         return Container(
           height: 60,
           color: Colors.white,
           child: TextButton(
-            onPressed: (() async => await viewModel.onSelectedServer(index)),
+            onPressed: () async => viewModel.onSelectedServer(index),
             child: ListTile(
               leading: Icon(
                 selected ? Icons.check_box : Icons.check_box_outline_blank,
@@ -37,8 +37,8 @@ class _ServerConfigPageState
             ),
           ),
         );
-      }),
-      separatorBuilder: ((context, index) => const Divider(height: 1)),
+      },
+      separatorBuilder: (context, index) => const Divider(height: 1),
       itemCount: serverList.length,
     );
   }
@@ -54,8 +54,8 @@ class _ServerConfigPageState
     controller.appBar?.actions = [
       TextButton(
         onPressed: () => _onDeleteServer(context),
-        child: const Text("删除"),
         style: TextButton.styleFrom(primary: Colors.red),
+        child: const Text("删除"),
       ),
       TextButton(
         onPressed: () => _onAddServer(context),

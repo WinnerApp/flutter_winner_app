@@ -120,23 +120,17 @@ linter:
     - use_is_even_rather_than_modulo
     - use_named_constants
     - use_setters_to_change_properties
-    #depend_on_referenced_packages
-    #sort_constructors_first
-    #public_member_api_docs
-    #prefer_final_parameters
-    #prefer_final_locals
-    #sort_child_properties_last
-    #avoid_redundant_argument_values
-    #require_trailing_commas
-    #prefer_final_in_for_each
-    #unnecessary_await_in_return
-    #lines_longer_than_80_chars
-    #no_default_cases
-    #unnecessary_parenthesis
-    #type_annotate_public_apis
-    #prefer_interpolation_to_compose_strings
-    #unnecessary_lambdas
-    #prefer_asserts_with_message
-    #prefer_constructors_over_static_methods
-    #library_private_types_in_public_api
-    #use_raw_strings
+    - sort_child_properties_last
+    - avoid_redundant_argument_values
+    - require_trailing_commas
+    - prefer_final_in_for_each
+    - unnecessary_await_in_return
+    - lines_longer_than_80_chars
+    - no_default_cases
+    - unnecessary_parenthesis
+    - type_annotate_public_apis
+    - prefer_interpolation_to_compose_strings
+    - unnecessary_lambdas
+    - prefer_asserts_with_message
+    - use_raw_strings
+    # - public_member_api_docs 公共 Api 需要注释

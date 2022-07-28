@@ -31,6 +31,6 @@ class AppCacheManager extends ChangeNotifier {
   Future<bool> saveCacheData<T extends JsonConverter>(T model) async {
     final currentUrl = Global().httpManager.baseUrl;
     final store = WinnerPreferenceStore(PreferenceKey(currentUrl));
-    return await store.setConverModel(model);
+    return store.setConverModel(model);
   }
 }

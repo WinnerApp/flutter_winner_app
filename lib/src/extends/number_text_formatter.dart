@@ -8,7 +8,9 @@ class NumberTextFormatter extends TextInputFormatter {
   NumberTextFormatter({this.pointNumber});
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     String newValueText = newValue.text;
 
     if (newValueText.isEmpty) {
@@ -57,7 +59,7 @@ class NumberTextFormatter extends TextInputFormatter {
       if (pointNumber == 0) {
         return oldValue;
       }
-      if (((newValue.text.length - pointIndex - 1) > pointNumber)) {
+      if ((newValue.text.length - pointIndex - 1) > pointNumber) {
         return oldValue;
       }
     }

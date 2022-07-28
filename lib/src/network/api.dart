@@ -45,7 +45,8 @@ abstract class Api<C extends JsonConverter, M extends BaseModel> {
     if (customCacheKey == null ||
         customCacheKey!.key == CacheKey.defaultKey().key) {
       var data = this.data ?? {};
-      return "${apiVersion}_${method}_${path}_${params.toString()}_${data.toString()}";
+      final params = this.params.toString();
+      return "${apiVersion}_${method}_${path}_${params}_${data.toString()}";
     } else {
       return customCacheKey!.key;
     }
@@ -60,7 +61,7 @@ class DefaultJsonConverter<T> extends JsonConverter<T, dynamic> {
   T? value;
 
   @override
-  T fromJson(json) => json is T ? json : throw "解析的类型不一致";
+  T fromJson(dynamic json) => json is T ? json : throw "解析的类型不一致";
 
   @override
   dynamic toJson(T object) => object;

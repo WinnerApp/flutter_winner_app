@@ -11,7 +11,7 @@ class NavigatorUtil {
   }
 
   static Future<T?> pushAsync<T>(BuildContext context, Widget page) async {
-    return await Navigator.push(
+    return Navigator.push(
       context,
       CupertinoPageRoute(builder: (context) => page),
     );
@@ -39,14 +39,18 @@ class NavigatorUtil {
   /// - context 来源视图
   /// - page 对应界面
   /// - fullscreenDialog 是否全屏幕 默认为true
-  static Future<dynamic> presentAsync(BuildContext context, Widget page,
-      {bool fullscreenDialog = true}) async {
-    return await Navigator.push(
-        context,
-        CupertinoPageRoute(
-          fullscreenDialog: fullscreenDialog,
-          builder: (context) => page,
-        ));
+  static Future<dynamic> presentAsync(
+    BuildContext context,
+    Widget page, {
+    bool fullscreenDialog = true,
+  }) async {
+    return Navigator.push(
+      context,
+      CupertinoPageRoute(
+        fullscreenDialog: fullscreenDialog,
+        builder: (context) => page,
+      ),
+    );
   }
 
   ///跳转到指定页面,meterial主题 （Android）
@@ -58,8 +62,10 @@ class NavigatorUtil {
   }
 
   static Future<T?> pushAsyncMaterial<T>(
-      BuildContext context, Widget page) async {
-    return await Navigator.push(
+    BuildContext context,
+    Widget page,
+  ) async {
+    return Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => page),
     );

@@ -8,12 +8,13 @@ class FileCacheUtil {
   /// 缓存的文件名
   String? _filePath;
   String? _fileName;
-  FileCacheUtil.filePath(String filePath): _filePath = filePath;
-  FileCacheUtil.fileName(String fileName): _fileName = fileName;
+  FileCacheUtil.filePath(String filePath) : _filePath = filePath;
+  FileCacheUtil.fileName(String fileName) : _fileName = fileName;
+
   /// 加载缓存内容
   Future<String?> loadCacheContent() async {
     String cacheFilePath = await cachceFilePath();
-    return await compute(_loadCache, cacheFilePath);
+    return compute(_loadCache, cacheFilePath);
   }
 
   static Future<String?> _loadCache(String cacheFilePath) async {
@@ -22,7 +23,7 @@ class FileCacheUtil {
     if (!isExit) {
       return null;
     }
-    return await file.readAsString();
+    return file.readAsString();
   }
 
   /// 写入缓存内容
@@ -45,9 +46,8 @@ class FileCacheUtil {
     if (_filePath != null) {
       return _filePath!;
     }
-    assert(_fileName != null);
     Directory directory = await pp.getApplicationDocumentsDirectory();
-    return directory.path + "/$_fileName";
+    return "${directory.path}/$_fileName";
   }
 
   /// 创建一个目录 如果存在则直接返回操作
