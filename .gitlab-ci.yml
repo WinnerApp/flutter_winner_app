@@ -1,0 +1,7 @@
+stages:
+  - analyze
+
+flutter_analyze:
+  stage: analyze
+  script:
+    - flutter analyze
