@@ -5,41 +5,45 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
 
+/// 配置 Winner App 的基础配置
 abstract class WinnerAppConfig extends ChangeNotifier {
-  /// 支持服务器请求的[url]
   List<BaseUrl> _appUrls = [];
 
+  /// 目前支持的接口配置 可以通过 BaseUrl 的子类来加载不同请求地址不同配置的目的
   List<BaseUrl> get appUrls => _appUrls;
 
   /// 初始化
   WinnerAppConfig();
 
-  /// 更新当前页面支持的 [URL]
-  void updateAppUrls(List<BaseUrl> urls) {
+  /// 更新当前 App 支持的环境地址 比如在测试包新增一个自由配置环境地址 可以通过这个方法更新环境地址列表
+  /// [urls] 更新
+  void updateAppUrls<URL extends BaseUrl>(List<URL> urls) {
     _appUrls = urls;
     notifyListeners();
   }
 
-  /// 配置 [HTTP Header]
+  /// 配置 公共 [HTTP Header] 比如 登录之后授权的 Token
   Map<String, dynamic> get httpHeaders => {};
 
-  /// 配置请求的[url] 可以根据[BaseUrl]自定义请求地址
+  /// 配置请求的[url] 可以根据[BaseUrl]自定义请求地址 比如根据不同的环境，有不同的路由前缀。
   String configRequestPath(BaseUrl url, Api? api) => url.url;
 
-  /// 配置[SentryHost]
+  /// 配置[SentryHost] 支持 Sentry 上报
   SentryHost get sentryHost;
 
-  /// 配置首页配置[providers]
+  /// 配置全局的 Provider 建议将全局的 Provider 设置为单例模式 比如用户信息管理 App 运行期间的数据管理
   List<SingleChildWidget> get providers => [];
 
   /// 配置app路由观测者[navigatorObservers]
   List<NavigatorObserver> get navigatorObservers => [];
 
-  /// 是否开启设备预览
+  /// 是否开启设备预览 用于在设备运行期间查看不同手机尺寸的运行效果 方便调试和做兼容
   bool _isEnablePreviewDevice = false;
 
   bool get isEnablePreviewDevice => _isEnablePreviewDevice;
 
+  /// 设置设备预览的可见性
+  /// [value] 如果 true 代表设备预览可见 false 代表设备预览不可见
   set isEnablePreviewDevice(bool value) {
     _isEnablePreviewDevice = value;
     notifyListeners();
@@ -57,29 +61,58 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   }
 
   /// 配置环境对应的请求地址
+  ///
+  /// 直接通过字符串进行初始化地址
+  /// ```dart
+  /// WinnerEnvironmentUrl(
+  ///   debug: "debug url",
+  ///   profile: "profile url",
+  ///   release: "release url",
+  /// );
+  /// ```
+  ///
+  /// 通过 BaseUrl 类或者子类进行创建
+  /// ```dart
+  /// WinnerEnvironmentUrl.fromUrl(
+  ///   debug: BaseUrl(url: "debug url"),
+  ///   profile: BaseUrl(url: "profile url"),
+  ///   release: BaseUrl(url: "release url"),
+  /// );
+  /// ```
   WinnerEnvironmentUrl get environmentUrl;
 
-  /// 展示错误[Toast]
+  /// 展示错误信息的统一回调 通过这个方法自定义提示
+  /// App 可以统一通过提示错误
+  /// ```dart
+  /// ToastStyle.showErrorToast(msg: "error message");
+  /// ```
   void showErrorToast(String message) {}
 
-  /// 展示错误信息 点击确定按钮之后的回掉
+  /// 展示错误信息的异步方法 比如弹出一个错误提示框 当用户点击关闭按钮之后 依然需要进行操作时候用到
+  /// ```dart
+  /// ToastStyle.showAsyncErrorToast(context: context, msg: "error message");
+  /// ```
   Future<void> showAsyncErrorToast(
     BuildContext context,
     String message,
   ) async {}
 
-  /// 展示成功[Toast]
+  /// 展示成功的信息
+  /// ```dart
+  /// ToastStyle.showSuccessToast(msg: "success")
+  /// ```
   void showSuccessToast(String message) {}
 
-  /// 颜色主题
+  /// 颜色主题 自带的一些组件用到了一些配色 可以通过 WColor 子类进行重写
   WColor colorTheme = WColor();
 
-  /// 字体主题
+  /// 字体主题 自带的一些组件用到一些字体大小 可以通过 WFont 子类进行重写
   WFont fontTheme = WFont();
 
+  /// 可以设置 MaterialApp 的其他属性
   void configMaterialApp(WinnerMaterialApp app) => {};
 
-  /// 配置 UME插件
+  /// 配置 UME插件 用于开发快速功能调试
   void configUMEPlugin(PluginManager manager) => {};
 
   /// 自定义配置 SystemChrome
@@ -96,6 +129,6 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   /// 是否使用 Sentry 服务 关闭 则不会掉用 sentryHost
   bool get isEnableSentry => true;
 
-  /// 创建对应 App 缓存的对象
+  /// 创建对应 App 缓存的对象 对象需要实现 JsonConverter
   JsonConverter? get getNewCacheConverter => null;
 }
