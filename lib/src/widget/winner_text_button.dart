@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 class WinnerTextButton extends StatefulWidget {
   final WinnerTextButtonController controller;
   const WinnerTextButton({
-    Key? key,
     required this.controller,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -51,7 +51,7 @@ class WinnerTextButtonController extends ChangeNotifier {
     this.onTap,
   });
 
-  change({
+  void change({
     required Widget title,
     Color? backgroundColor,
     bool? offstage,

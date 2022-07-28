@@ -8,9 +8,9 @@ class StartEndView extends StatelessWidget {
   final MainDirection? direction;
   final CrossAxisAlignment? crossAxisAlignment;
   const StartEndView({
-    Key? key,
     required this.start,
     required this.end,
+    Key? key,
     this.space,
     this.direction,
     this.crossAxisAlignment,
@@ -35,18 +35,18 @@ class StartEndBuilderView extends StatelessWidget {
   final MainDirection? direction;
   final CrossAxisAlignment? crossAxisAlignment;
   const StartEndBuilderView({
-    Key? key,
     required this.startBuilder,
     required this.endBuilder,
+    Key? key,
     this.space,
     this.direction,
     this.crossAxisAlignment,
   }) : super(key: key);
 
   StartEndBuilderView.start({
-    Key? key,
     required WidgetBuilder startBuilder,
     required Widget end,
+    Key? key,
     double? space,
     MainDirection? direction,
     CrossAxisAlignment? crossAxisAlignment,
@@ -60,9 +60,9 @@ class StartEndBuilderView extends StatelessWidget {
         );
 
   StartEndBuilderView.end({
-    Key? key,
     required Widget start,
     required WidgetBuilder endBuilder,
+    Key? key,
     double? space,
     MainDirection? direction,
     CrossAxisAlignment? crossAxisAlignment,

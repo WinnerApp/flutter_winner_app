@@ -4,8 +4,10 @@ import 'package:flutter_winner_app/flutter_winner_app.dart';
 class WinnerListFootView extends StatelessWidget {
   final bool isFinish;
 
-  const WinnerListFootView({Key? key, required this.isFinish})
-      : super(key: key);
+  const WinnerListFootView({
+    required this.isFinish,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

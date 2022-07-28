@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class KeepAliveWrapper extends StatefulWidget {
   const KeepAliveWrapper({
+    required this.child,
     Key? key,
     this.keepAlive = true,
-    required this.child,
   }) : super(key: key);
   final bool keepAlive;
   final Widget child;

@@ -7,7 +7,9 @@ class NextFocusNodeManager {
   /// [index] 当前输入框的索引
   FocusNode getFocusNode(int index) {
     FocusNode? focusNode = _focusNodeMap[index];
-    if (focusNode != null) return focusNode;
+    if (focusNode != null) {
+      return focusNode;
+    }
     FocusNode newFocusNode = FocusNode();
     _focusNodeMap[index] = newFocusNode;
     return newFocusNode;
@@ -17,7 +19,9 @@ class NextFocusNodeManager {
   /// [index] 下个输入框的索引
   void nextRequestFocusNode(int index) {
     FocusNode? focusNode = _focusNodeMap[index];
-    if (focusNode == null) return;
+    if (focusNode == null) {
+      return;
+    }
     focusNode.requestFocus();
   }
 }

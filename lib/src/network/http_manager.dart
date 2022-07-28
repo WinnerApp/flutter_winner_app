@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:core';
-import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_winner_app/flutter_winner_app.dart';
@@ -32,19 +31,18 @@ class HttpManager {
       if (ProxyConfig.enable) {
         (client.httpClientAdapter as DefaultHttpClientAdapter)
             .onHttpClientCreate = (client) {
-          client.findProxy = (uri) {
-            return "PROXY ${ProxyConfig.ip}:${ProxyConfig.port}";
-          };
-          //代理工具会提供一个抓包的自签名证书，会通不过证书校验，所以我们禁用证书校验
-          client.badCertificateCallback =
-              (X509Certificate cert, String host, int port) => true;
+          client
+            ..findProxy = (uri) {
+              return "PROXY ${ProxyConfig.ip}:${ProxyConfig.port}";
+            }
+            //代理工具会提供一个抓包的自签名证书，会通不过证书校验，所以我们禁用证书校验
+            ..badCertificateCallback = (cert, host, port) => true;
           return null;
         };
       } else {
         (client.httpClientAdapter as DefaultHttpClientAdapter)
             .onHttpClientCreate = (client) {
-          client.badCertificateCallback =
-              (X509Certificate cert, String host, int port) {
+          client.badCertificateCallback = (cert, host, port) {
             if (ProxyConfig.pem == null ||
                 (ProxyConfig.pem != null && ProxyConfig.pem == cert.pem)) {
               return true;
@@ -107,9 +105,9 @@ class HttpManager {
       if (jsonText.length < 10000) {
         LogUtil().v("✅:url:$url\n${json.encode(response.data)}");
       }
-      M model = api.model;
-      model.response = response;
-      model.parseData(response.data ?? {}, api);
+      M model = api.model
+        ..response = response
+        ..parseData(response.data ?? {}, api);
       return model;
     } on DioError catch (e, s) {
       LogUtil().v("❌:url:$url\n$e\n$s");
@@ -117,8 +115,9 @@ class HttpManager {
       if (e.response != null && e.response!.data is Map<String, dynamic>) {
         model.parseData(e.response?.data, api);
       } else {
-        model.message = e.message;
-        model.code = -1;
+        model
+          ..message = e.message
+          ..code = -1;
       }
       model.response = e.response;
       return model;

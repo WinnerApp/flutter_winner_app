@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'base_model.dart';
 
 /// 请求配置的基类
 abstract class Api<C extends JsonConverter, M extends BaseModel> {
@@ -40,7 +40,7 @@ abstract class Api<C extends JsonConverter, M extends BaseModel> {
   /// 自定义请求路径
   bool get customPath => false;
 
-  /// 获取缓存的唯一[Key]
+  /// 获取缓存的唯一 Key
   String get cacheKey {
     if (customCacheKey == null ||
         customCacheKey!.key == CacheKey.defaultKey().key) {
@@ -50,6 +50,7 @@ abstract class Api<C extends JsonConverter, M extends BaseModel> {
       return customCacheKey!.key;
     }
   }
+
   /// 缓存的时间 默认为30 秒
   int get cacheTime => 30;
 }
@@ -62,7 +63,7 @@ class DefaultJsonConverter<T> extends JsonConverter<T, dynamic> {
   T fromJson(json) => json is T ? json : throw "解析的类型不一致";
 
   @override
-  toJson(T object) => object;
+  dynamic toJson(T object) => object;
 }
 
 class HttpMethod {

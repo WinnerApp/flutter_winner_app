@@ -120,14 +120,15 @@ class WinnerApp<Config extends WinnerAppConfig> {
       /// 初始化[App]
       await SentryFlutter.init(
         (option) {
-          option.dsn = _sentryHost;
-          option.beforeSend = (event, {hint}) {
-            if (AppEnvironmentManager().appEnvironment ==
-                AppEnvironment.debug) {
-              return null;
-            }
-            return event;
-          };
+          option
+            ..dsn = _sentryHost
+            ..beforeSend = (event, {hint}) {
+              if (AppEnvironmentManager().appEnvironment ==
+                  AppEnvironment.debug) {
+                return null;
+              }
+              return event;
+            };
         },
         appRunner: _sentryAppRunner,
       );
@@ -169,9 +170,9 @@ class WinnerApp<Config extends WinnerAppConfig> {
   }
 
   Widget _mainWidget() {
-    List<SingleChildWidget> providers = appConfig.providers;
-    providers.add(ChangeNotifierProvider.value(value: appConfig));
-    providers.add(ChangeNotifierProvider.value(value: AppCacheManager()));
+    List<SingleChildWidget> providers = appConfig.providers
+      ..add(ChangeNotifierProvider.value(value: appConfig))
+      ..add(ChangeNotifierProvider.value(value: AppCacheManager()));
     return MultiProvider(
       providers: providers,
       child: Selector<Config, bool>(

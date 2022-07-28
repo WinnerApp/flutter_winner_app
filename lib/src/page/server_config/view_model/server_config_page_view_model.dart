@@ -28,7 +28,7 @@ class ServerConfigPageViewModel extends BaseViewModel {
     await AppCacheManager().initCacheData();
   }
 
-  onAddServer() {
+  void onAddServer() {
     if (controller.text.isEmpty) {
       return;
     }
@@ -48,7 +48,7 @@ class ServerConfigPageViewModel extends BaseViewModel {
     onSelectedServer(_serverList.length - 1);
   }
 
-  onDeleteServer() {
+  void onDeleteServer() {
     if (_serverList.length <= 1) {
       ToastStyle.showErrorToast(msg: "至少保留一个服务器");
       return;

@@ -64,7 +64,7 @@ class _ServerConfigPageState
     ];
   }
 
-  _onAddServer(BuildContext context) {
+  void _onAddServer(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
@@ -78,7 +78,7 @@ class _ServerConfigPageState
     );
   }
 
-  _onDeleteServer(BuildContext context) {
+  void _onDeleteServer(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {

@@ -13,22 +13,22 @@ class WColor {
   /// 空白视图的背景视图
   Color get emptyBackground => const Color(0xFFF8F9Fa);
 
-  /// [PressStateButton]开始状态标题颜色
+  /// PressStateButton 开始状态标题颜色
   Color get pressStateStartButtonTitle => const Color(0xFFFFFFFF);
 
   /// PressStateButton]开始状态背景颜色
   Color get pressStateStartButtonBackground => const Color(0xFF209090);
 
-  /// [PressStateButton]结束的标题颜色
+  /// PressStateButton 结束的标题颜色
   Color get pressStateEndButtonTitle => const Color(0xFFFFFFFF);
 
-  /// [PressStateButton]结束的背景颜色
+  /// PressStateButton 结束的背景颜色
   Color get pressStateEndButtonBackground => const Color(0xFFE87050);
 
   /// 导航栏标题颜色
   Color get navigationBarTitle => const Color(0XFF333333);
 
-  /// [Toast]背景颜色
+  /// Toast背景颜色
   Color get toastBackground => const Color(0xFF209090);
 
   /// 列表标题颜色

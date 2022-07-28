@@ -6,16 +6,17 @@ class WinnerCard extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final double? radius;
   final double? height;
+
   /// 卡片的背景颜色
   final Color? backgroundColor;
-  const WinnerCard({
-    Key? key,
-    required this.child,
-    this.margin,
-    this.radius,
-    this.backgroundColor,
-    this.height
-  }) : super(key: key);
+  const WinnerCard(
+      {required this.child,
+      Key? key,
+      this.margin,
+      this.radius,
+      this.backgroundColor,
+      this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

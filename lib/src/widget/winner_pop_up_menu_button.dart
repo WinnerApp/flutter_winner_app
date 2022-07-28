@@ -17,9 +17,9 @@ class WinnerPopUpMenuButton<T extends WinnerPopUpMenuItem>
   final bool enabled;
 
   const WinnerPopUpMenuButton({
-    Key? key,
     required this.viewModel,
     required this.menuTip,
+    Key? key,
     this.onSelected,
     this.itemBuilder,
     this.color,
@@ -130,7 +130,9 @@ class WinnerPopUpMenuCustonItem<T> extends WinnerPopUpMenuItem {
   @override
   bool isEqual(WinnerPopUpMenuItem item) {
     WinnerPopUpMenuCustonItem<T>? right = item as WinnerPopUpMenuCustonItem<T>?;
-    if (right == null) return false;
+    if (right == null) {
+      return false;
+    }
     return isEqualBuilder(model, right.model);
   }
 

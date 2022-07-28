@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'api.dart';
+import 'package:flutter_winner_app/flutter_winner_app.dart';
 
 /// 解析后台数据的基本模型
 abstract class BaseModel {
