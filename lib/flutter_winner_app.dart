@@ -180,7 +180,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
           return DevicePreview(
             enabled: data,
             builder: (context) {
-              return const MyApp();
+              return appConfig.appWrapper(context, const MyApp());
             },
           );
         },

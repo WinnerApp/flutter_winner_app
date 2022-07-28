@@ -39,6 +39,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 是否开启设备预览 用于在设备运行期间查看不同手机尺寸的运行效果 方便调试和做兼容
   bool _isEnablePreviewDevice = false;
+
   bool get isEnablePreviewDevice => _isEnablePreviewDevice;
 
   /// 设置设备预览的可见性
@@ -53,6 +54,11 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// App 首页的[Home]
   Widget appHome(BuildContext context);
+
+  /// 提供给外部包裹[MyApp]的机会
+  Widget appWrapper(BuildContext context, Widget child) {
+    return child;
+  }
 
   /// 配置环境对应的请求地址
   ///

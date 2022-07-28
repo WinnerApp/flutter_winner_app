@@ -1,0 +1,13 @@
+stages:
+  - analyze
+
+flutter_analyze:
+  stage: analyze
+  script:
+    - env
+    - export PATH=/Users/jenkins/fvm/default/bin:/Users/jenkins/fvm/default/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/jenkins/.fig/bin:/Users/jenkins/.local/bin:/Users/jenkins/.mint/bin:/Users/jenkins/.mint/bin
+    - export PUB_HOSTED_URL=https://pub.flutter-io.cn
+    - export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+    - flutter analyze
+  tags:
+    - winner-jenkins
