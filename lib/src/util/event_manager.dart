@@ -15,7 +15,7 @@ class EventManager {
   EventBus get eventBus => _bus;
 
   ///发送消息
-  void post(event) {
+  void post(dynamic event) {
     _bus.fire(event);
   }
 

@@ -68,7 +68,6 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                     onSelectedItemChanged: (index) {
                       _dataPickerController.index = index;
                     },
-                    children: pickerItems,
                     selectionOverlay: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
@@ -85,6 +84,7 @@ class _WinnerDataPickerState extends State<WinnerDataPicker> {
                         ],
                       ),
                     ),
+                    children: pickerItems,
                   ),
                 ),
                 hiSpace(height: 30),

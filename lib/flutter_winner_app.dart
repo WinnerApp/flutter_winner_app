@@ -96,10 +96,10 @@ final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 /// }
 /// ```
 class WinnerApp<Config extends WinnerAppConfig> {
+  const WinnerApp(this.appConfig);
+
   /// Winner App的配置文件 需要自定义子类
   final Config appConfig;
-
-  WinnerApp(this.appConfig);
 
   Future<void> appMain({
     WinnerAppInit? appInit,
@@ -151,7 +151,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
   /// [Sentry]启动
   void _sentryAppRunner() {
     /// 获取[Dio]实例
-    Dio dio = Global().httpManager.client;
+    final Dio dio = Global().httpManager.client;
     if (AppEnvironmentManager().isDeveloperEnvironment) {
       PluginManager.instance // 注册插件
         ..register(const WidgetInfoInspector())
@@ -160,10 +160,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
         ..register(Console())
         ..register(DioInspector(dio: dio)); // 传入你的 Dio 实例
       Global().appConfig.configUMEPlugin(PluginManager.instance);
-      runApp(UMEWidget(
-        child: _mainWidget(),
-        enable: true,
-      ));
+      runApp(UMEWidget(child: _mainWidget()));
     } else {
       runApp(_mainWidget());
     }
@@ -221,7 +218,7 @@ class MyApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> _routes() {
     Map<String, WidgetBuilder> routes = {};
-    for (var element in Global().appConfig.routes) {
+    for (final element in Global().appConfig.routes) {
       routes[element.path] = element.routeMake;
     }
     return routes;

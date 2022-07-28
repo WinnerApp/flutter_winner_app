@@ -26,8 +26,6 @@ class BaseUrl {
         return environmentUrl.profile;
       case AppEnvironment.release:
         return environmentUrl.release;
-      default:
-        return BaseUrl("");
     }
   }
 

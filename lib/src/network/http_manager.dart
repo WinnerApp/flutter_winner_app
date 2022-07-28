@@ -6,14 +6,16 @@ import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /// @desc  封装 http 请求
-/// 1>：首先从本地数据库的缓存中读取数据，如果缓存有数据，就直接显示列表数据，同时去请求服务器，如果服务器返回数据了，这个时候就去比对服务器返回的数据与缓存中的数据，看是否一样；
+/// 1>：首先从本地数据库的缓存中读取数据，如果缓存有数据，就直接显示列表数据，同时去请求服务器，
+/// 如果服务器返回数据了，这个时候就去比对服务器返回的数据与缓存中的数据，看是否一样；
 /// 2>：如果比对结果是一样，那么直接return返回，不做任何操作；
 /// 3>：如果比对结果不一样，就去刷新列表数据，同时把之前数据库中的数据删除，然后存储新的数据；
 class HttpManager {
   /// 设置请求的`URL`
   String baseUrl;
 
-  ///同一个CancelToken可以用于多个请求，当一个CancelToken取消时，所有使用该CancelToken的请求都会被取消，一个页面对应一个CancelToken。
+  ///同一个CancelToken可以用于多个请求，当一个CancelToken取消时，所有使用该CancelToken的
+  ///请求都会被取消，一个页面对应一个CancelToken。
   final Map<String, CancelToken> _cancelTokens = <String, CancelToken>{};
 
   /// `Dio`请求实例
@@ -93,7 +95,9 @@ class HttpManager {
       _cancelTokens[tag] = cancelToken;
 
       LogUtil().v(
-          "url:$url\ndata:${api.data}\nparams:$params\nheaders:${options.headers}\ncancelToken:$cancelToken");
+        "url:$url\ndata:${api.data}\nparams:$params\nheaders:${options.headers}"
+        "\ncancelToken:$cancelToken",
+      );
       Response<Map<String, dynamic>> response = await client.request(
         url,
         data: api.data,

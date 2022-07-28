@@ -53,7 +53,7 @@ class StartEndBuilderView extends StatelessWidget {
   }) : this(
           key: key,
           startBuilder: startBuilder,
-          endBuilder: ((context) => end),
+          endBuilder: (context) => end,
           space: space,
           direction: direction,
           crossAxisAlignment: crossAxisAlignment,
@@ -68,7 +68,7 @@ class StartEndBuilderView extends StatelessWidget {
     CrossAxisAlignment? crossAxisAlignment,
   }) : this(
           key: key,
-          startBuilder: ((context) => start),
+          startBuilder: (context) => start,
           endBuilder: endBuilder,
           space: space,
           direction: direction,

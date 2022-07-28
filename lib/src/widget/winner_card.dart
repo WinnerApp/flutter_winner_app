@@ -9,22 +9,23 @@ class WinnerCard extends StatelessWidget {
 
   /// 卡片的背景颜色
   final Color? backgroundColor;
-  const WinnerCard(
-      {required this.child,
-      Key? key,
-      this.margin,
-      this.radius,
-      this.backgroundColor,
-      this.height})
-      : super(key: key);
+  const WinnerCard({
+    required this.child,
+    Key? key,
+    this.margin,
+    this.radius,
+    this.backgroundColor,
+    this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
       decoration: BoxDecoration(
-          color: backgroundColor ?? const Color(0xFFFFFFFF),
-          borderRadius: BorderRadius.all(Radius.circular(radius ?? 10))),
+        color: backgroundColor ?? const Color(0xFFFFFFFF),
+        borderRadius: BorderRadius.all(Radius.circular(radius ?? 10)),
+      ),
       child: child,
     );
   }

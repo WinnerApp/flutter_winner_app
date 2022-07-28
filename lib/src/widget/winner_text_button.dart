@@ -20,20 +20,21 @@ class _WinnerTextButtonState extends State<WinnerTextButton> {
       builder: (context, child) {
         WinnerTextButtonController controller = context.watch();
         return Consumer<WinnerTextButtonController>(
-            builder: (context, data, child) {
-          return Offstage(
-            offstage: controller.offstage ?? false,
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              child: controller.title,
-              color: controller.backgroundColor,
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              onPressed: () {
-                controller.onTap?.call();
-              },
-            ),
-          );
-        });
+          builder: (context, data, child) {
+            return Offstage(
+              offstage: controller.offstage ?? false,
+              child: CupertinoButton(
+                padding: EdgeInsets.zero,
+                color: controller.backgroundColor,
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                onPressed: () {
+                  controller.onTap?.call();
+                },
+                child: controller.title,
+              ),
+            );
+          },
+        );
       },
     );
   }

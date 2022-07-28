@@ -11,7 +11,6 @@ abstract class WinnerPullRefreshPage<T extends StatefulWidget,
       builder: (context, value, child) {
         return SmartRefresher(
           controller: value.refreshController,
-          enablePullDown: true,
           enablePullUp: value.enablePullUp,
           onRefresh: () async {
             await viewModel.onRefresh();
@@ -149,11 +148,11 @@ abstract class WinnerListRefreshPageViewModel<
   }
 
   Future<Model?> loadData() async {
-    return await loadList();
+    return loadList();
   }
 
   Future<Model?> loadList() async {
     final api = configApi();
-    return await request(api: api, isUseLoading: false);
+    return request(api: api, isUseLoading: false);
   }
 }

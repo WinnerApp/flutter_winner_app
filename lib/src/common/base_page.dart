@@ -96,6 +96,12 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
 }
 
 class BasePageController {
+  BasePageController() {
+    appBar = WinnerAppBar()
+      ..centerTitle = true
+      ..backgroundColor = Global().appConfig.colorTheme.appBarBackground;
+  }
+
   /// AppBar样式
   WinnerAppBar? appBar;
 
@@ -109,10 +115,4 @@ class BasePageController {
 
   /// 默认为 false
   bool hiddenAppBar = false;
-
-  BasePageController() {
-    appBar = WinnerAppBar()
-      ..centerTitle = true
-      ..backgroundColor = Global().appConfig.colorTheme.appBarBackground;
-  }
 }

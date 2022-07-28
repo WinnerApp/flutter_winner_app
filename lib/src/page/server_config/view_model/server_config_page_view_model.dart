@@ -33,7 +33,7 @@ class ServerConfigPageViewModel extends BaseViewModel {
       return;
     }
     if (!controller.text.startsWith("http")) {
-      controller.text = "http://" + controller.text;
+      controller.text = "http://${controller.text}";
     }
     if (_serverList.contains(controller.text)) {
       ToastStyle.showErrorToast(msg: "服务器地址已存在");
@@ -42,7 +42,7 @@ class ServerConfigPageViewModel extends BaseViewModel {
     }
     _serverList = [..._serverList];
     _serverList.add(controller.text);
-    final appUrls = _serverList.map((e) => BaseUrl(e)).toList();
+    final appUrls = _serverList.map(BaseUrl.new).toList();
     Global().appConfig.updateAppUrls(appUrls);
     controller.clear();
     onSelectedServer(_serverList.length - 1);
@@ -55,7 +55,7 @@ class ServerConfigPageViewModel extends BaseViewModel {
     }
     _serverList = [..._serverList];
     _serverList.removeAt(_currentIndex);
-    final appUrls = _serverList.map((e) => BaseUrl(e)).toList();
+    final appUrls = _serverList.map(BaseUrl.new).toList();
     Global().appConfig.updateAppUrls(appUrls);
     onSelectedServer(_serverList.length - 1);
   }

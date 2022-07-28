@@ -24,7 +24,7 @@ class WinnerPreferenceStore extends WinnerStore {
     Future<bool> Function(SharedPreferences preferences) fn,
   ) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await fn(preferences);
+    return fn(preferences);
   }
 }
 
@@ -35,13 +35,13 @@ class PreferenceKey {
 
 extension WinnerPreferenceGetStore on WinnerPreferenceStore {
   Future<Object?> get() async {
-    return await _get(
+    return _get(
       (preferences) => preferences.get(key.value),
     );
   }
 
   Future<bool?> getBool() async {
-    return await _get(
+    return _get(
       (preferences) => preferences.getBool(key.value),
     );
   }
@@ -59,19 +59,19 @@ extension WinnerPreferenceGetStore on WinnerPreferenceStore {
   }
 
   Future<String?> getString() async {
-    return await _get(
+    return _get(
       (preferences) => preferences.getString(key.value),
     );
   }
 
   Future<List<String>?> getStringList() async {
-    return await _get(
+    return _get(
       (preferences) => preferences.getStringList(key.value),
     );
   }
 
   Future<Map?> getMap() async {
-    return await _get((preferences) {
+    return _get((preferences) {
       final jsonText = preferences.getString(key.value);
       if (jsonText == null) {
         return null;
@@ -89,7 +89,7 @@ extension WinnerPreferenceGetStore on WinnerPreferenceStore {
   }
 
   Future<T?> getConverModel<T extends JsonConverter>(T emptyModel) async {
-    return await getModel((map) {
+    return getModel((map) {
       return emptyModel.fromJson(map) as T?;
     });
   }
@@ -99,42 +99,42 @@ extension WinnerPreferenceSetStore on WinnerPreferenceStore {
   Future<bool> setInt(int value) async {
     return _set(
       value,
-      (preferences) async => await preferences.setInt(key.value, value),
+      (preferences) async => preferences.setInt(key.value, value),
     );
   }
 
   Future<bool> setBool(bool value) async {
     return _set(
       value,
-      (preferences) async => await preferences.setBool(key.value, value),
+      (preferences) async => preferences.setBool(key.value, value),
     );
   }
 
   Future<bool> setDouble(double value) async {
     return _set(
       key,
-      (preferences) async => await preferences.setDouble(key.value, value),
+      (preferences) async => preferences.setDouble(key.value, value),
     );
   }
 
   Future<bool> setString(String value) async {
-    return await _set(
+    return _set(
       key,
-      (preferences) async => await preferences.setString(key.value, value),
+      (preferences) async => preferences.setString(key.value, value),
     );
   }
 
   Future<bool> setStringList(List<String> value) async {
-    return await _set(
+    return _set(
       key,
-      (preferences) async => await preferences.setStringList(key.value, value),
+      (preferences) async => preferences.setStringList(key.value, value),
     );
   }
 
   Future<bool> setMap(Map map) async {
-    return await _set(key, (preferences) async {
+    return _set(key, (preferences) async {
       final jsonText = json.encode(map);
-      return await preferences.setString(key.value, jsonText);
+      return preferences.setString(key.value, jsonText);
     });
   }
 
