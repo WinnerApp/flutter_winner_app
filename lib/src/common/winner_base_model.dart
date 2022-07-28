@@ -41,7 +41,7 @@ abstract class WinnerBaseModel<T> extends BaseModel {
   }
 
   /// 加载缓存
-  /// [cacheKey] 读取本地缓存的Key
+  /// [api] 读取本地缓存的接口
   Future<WinnerBaseModel<T>> loadCache(Api api) async {
     var document = await getApplicationDocumentsDirectory();
     var md5String =
@@ -53,7 +53,9 @@ abstract class WinnerBaseModel<T> extends BaseModel {
       return this;
     }
     var jsonText = await file.readAsString();
-    if (jsonText.isEmpty) return this;
+    if (jsonText.isEmpty) {
+      return this;
+    }
     var data = json.decode(jsonText);
     customParseData(data, api);
     return this;

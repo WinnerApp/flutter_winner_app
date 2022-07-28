@@ -4,8 +4,8 @@ import 'package:flutter_winner_app/flutter_winner_app.dart';
 class WinnerNavigationBarTitle extends StatelessWidget {
   final String title;
   const WinnerNavigationBarTitle({
-    Key? key,
     required this.title,
+    Key? key,
   }) : super(key: key);
 
   @override

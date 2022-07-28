@@ -10,9 +10,9 @@ class WinnerDataPicker extends StatefulWidget {
   final String? selectValue;
   final Function(int index)? didSelectItem;
   const WinnerDataPicker({
-    Key? key,
     required this.title,
     required this.items,
+    Key? key,
     this.selectValue,
     this.didSelectItem,
   }) : super(key: key);

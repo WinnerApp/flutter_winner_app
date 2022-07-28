@@ -8,7 +8,7 @@ class Global {
   factory Global() => _global;
   final EventBus eventBus = EventBus();
 
-  /// 请求的[Manager]
+  /// 请求的 Manager
   late HttpManager httpManager;
 
   /// [Winner App]的配置文件
@@ -44,7 +44,7 @@ class Global {
     httpManager = HttpManager(baseUrl: requestPath);
   }
 
-  /// 更新请求的[Url] 支持程序运行期间切换环境
+  /// 更新请求的 Url 支持程序运行期间切换环境
   /// [url] 最新的请求地址
   void updateUrl(BaseUrl url) {
     /// 获取请求的[path]

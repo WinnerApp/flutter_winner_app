@@ -14,7 +14,9 @@ class BaseUrl {
     /// 只有体验测试版本 才允许读取用户保存的服务器地址
     if (AppEnvironmentManager().isDeveloperEnvironment) {
       var url = await _getPreferenceBaseUrl();
-      if (url != null) return BaseUrl(url);
+      if (url != null) {
+        return BaseUrl(url);
+      }
     }
     WinnerEnvironmentUrl environmentUrl = Global().appConfig.environmentUrl;
     switch (environment) {

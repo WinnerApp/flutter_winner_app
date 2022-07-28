@@ -7,7 +7,7 @@ import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
 
 /// 配置 Winner App 的基础配置
 abstract class WinnerAppConfig extends ChangeNotifier {
-  List<BaseUrl> _appUrls = [];
+  List<BaseUrl> _appUrls = <BaseUrl>[];
 
   /// 目前支持的接口配置 可以通过 BaseUrl 的子类来加载不同请求地址不同配置的目的
   List<BaseUrl> get appUrls => _appUrls;
@@ -23,7 +23,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   }
 
   /// 配置 公共 [HTTP Header] 比如 登录之后授权的 Token
-  Map<String, dynamic> get httpHeaders => {};
+  Map<String, dynamic> get httpHeaders => <String, dynamic>{};
 
   /// 配置请求的[url] 可以根据[BaseUrl]自定义请求地址 比如根据不同的环境，有不同的路由前缀。
   String configRequestPath(BaseUrl url, Api? api) => url.url;
@@ -52,7 +52,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   /// 设置静态页面路由
   List<WinnerRoute> get routes => [];
 
-  /// App 首页的[Home]
+  /// App 首页的 Home
   Widget appHome(BuildContext context);
 
   /// 提供给外部包裹[MyApp]的机会

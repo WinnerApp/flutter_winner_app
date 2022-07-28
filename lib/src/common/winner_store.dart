@@ -73,14 +73,18 @@ extension WinnerPreferenceGetStore on WinnerPreferenceStore {
   Future<Map?> getMap() async {
     return await _get((preferences) {
       final jsonText = preferences.getString(key.value);
-      if (jsonText == null) return null;
+      if (jsonText == null) {
+        return null;
+      }
       return json.decode(jsonText) as Map?;
     });
   }
 
   Future<T?> getModel<T>(T? Function(Map map) toModel) async {
     final map = await getMap();
-    if (map == null) return null;
+    if (map == null) {
+      return null;
+    }
     return toModel.call(map);
   }
 
@@ -136,7 +140,9 @@ extension WinnerPreferenceSetStore on WinnerPreferenceStore {
 
   Future<bool> setModel<T>(T model, Map? Function(T model) toMap) async {
     final map = toMap.call(model);
-    if (map == null) return false;
+    if (map == null) {
+      return false;
+    }
     return setMap(map);
   }
 

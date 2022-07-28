@@ -41,11 +41,13 @@ abstract class WinnerPullRefreshPageViewModel extends BaseViewModel {
   bool _enablePullUp = true;
   bool get enablePullUp => _enablePullUp;
 
-  /// 初始化是否自动刷新 默认为 [true]
+  /// 初始化是否自动刷新 默认为 true
   bool get initAutoRefresh => true;
 
   set enablePullUp(bool value) {
-    if (enablePullUp == value) return;
+    if (enablePullUp == value) {
+      return;
+    }
     _enablePullUp = value;
     notifyListeners();
   }
@@ -84,7 +86,9 @@ abstract class WinnerListRefreshPageViewModel<
   List<ListModel> get list => _list;
 
   set list(List<ListModel> value) {
-    if (list == value) return;
+    if (list == value) {
+      return;
+    }
     _list = value;
     notifyListeners();
   }

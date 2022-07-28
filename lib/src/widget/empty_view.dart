@@ -5,8 +5,8 @@ import 'package:flutter_winner_app/flutter_winner_app.dart';
 class EmptyView extends StatelessWidget {
   final Widget child;
   const EmptyView({
-    Key? key,
     required this.child,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,9 @@ class IconTitleEmptyView extends StatelessWidget {
   final double iconDescriptionSpace;
 
   const IconTitleEmptyView({
-    Key? key,
     required this.icon,
     required this.description,
+    Key? key,
     this.iconDescriptionSpace = 20,
   }) : super(key: key);
 
@@ -74,11 +74,11 @@ class EmptyDataView extends StatelessWidget {
   /// - [textButtonSpace] 描述和按钮的间隙 默认为 12
   /// - [textStyle] 描述的样式 默认为文本颜色 0xFF8D8D8D 字体 14
   const EmptyDataView({
-    Key? key,
     required this.icon,
     required this.description,
     required this.onTap,
     required this.button,
+    Key? key,
     this.iconTextSpace = 40,
     this.textButtonSpace = 12,
     this.textStyle = const TextStyle(

@@ -43,8 +43,8 @@ class PressState {
 class PressStateButton extends StatefulWidget {
   final PressState state;
   const PressStateButton({
-    Key? key,
     required this.state,
+    Key? key,
   }) : super(key: key);
 
   @override

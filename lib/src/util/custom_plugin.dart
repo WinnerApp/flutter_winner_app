@@ -19,7 +19,9 @@ class CustomPlugin extends Pluggable {
   });
   @override
   Widget buildWidget(BuildContext? context) {
-    if (context == null) return Container();
+    if (context == null) {
+      return Container();
+    }
     return MaterialApp(
       home: pageBuilder(context),
     );

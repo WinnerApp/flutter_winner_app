@@ -9,7 +9,7 @@ typedef CustomRequestSuccess<T> = bool Function(T model);
 
 /// 基于[ChangeNotifier] 的 ViewModel
 abstract class BaseViewModel extends ChangeNotifier {
-  /// 是否正在加载 默认为 [false]
+  /// 是否正在加载 默认为 false
   bool isLoading = false;
 
   /// 是否展示 HUD
@@ -20,9 +20,11 @@ abstract class BaseViewModel extends ChangeNotifier {
 
   BaseViewModel();
 
-  /// 可以自动显示和隐藏[HUD] 自动提示错误信息的请求
+  /// 可以自动显示和隐藏 HUD 自动提示错误信息的请求
   /// [api] 发起的请求
-  /// [customVerifyErrorMessage] 自定义验证
+  /// [verify] 自定义验证
+  /// [isUseLoading] 是否展示 HUD
+  /// [customRequestSuccess] 自定义请求成功条件
   Future<M?> request<T, C extends JsonConverter, M extends WinnerBaseModel<T>>({
     required Api<C, M> api,
     CustomVerifyErrorMessage<T, M>? verify,
@@ -32,7 +34,9 @@ abstract class BaseViewModel extends ChangeNotifier {
     isLoading = true;
 
     /// 如果当前没有显示加载[HUD] 则显示[HUD]
-    if (!isLoadingHUD && isUseLoading) showHUD();
+    if (!isLoadingHUD && isUseLoading) {
+      showHUD();
+    }
     M model = await Global().request(api: api);
     String? verifyMessage = verify?.call(model);
     final isSuccess = customRequestSuccess?.call(model) ?? model.isSuccess;
@@ -53,23 +57,25 @@ abstract class BaseViewModel extends ChangeNotifier {
     required bool isUseLoading,
   }) {
     /// 如果请求错误 或者有自定义验证错误信息 则隐藏[HUD]
-    if (isUseLoading) hiddenHUD();
+    if (isUseLoading) {
+      hiddenHUD();
+    }
 
     /// 展示错误信息
     ToastStyle.showErrorToast(msg: message);
   }
 
-  showHUD() {
+  void showHUD() {
     isLoadingHUD = true;
     notifyListeners();
   }
 
-  hiddenHUD() {
+  void hiddenHUD() {
     isLoadingHUD = false;
     notifyListeners();
   }
 
-  update() {
+  void update() {
     notifyListeners();
   }
 }

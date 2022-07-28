@@ -22,7 +22,9 @@ class AppCacheManager extends ChangeNotifier {
   }
 
   T? getCacheData<T extends JsonConverter>() {
-    if (_cacheData == null) return null;
+    if (_cacheData == null) {
+      return null;
+    }
     return _cacheData as T?;
   }
 

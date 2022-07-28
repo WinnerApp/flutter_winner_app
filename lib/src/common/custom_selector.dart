@@ -4,37 +4,41 @@ import 'package:provider/provider.dart';
 /// 优化Selector，可任意对象
 class CustomSelector<A, T> extends Selector<A, CustomSelectorModel<T?>> {
   CustomSelector({
-    Key? key,
     required ValueWidgetBuilder<T?> builder,
     required CustomSelectorModel<T?> selector,
+    Key? key,
     ShouldRebuild<CustomSelectorModel>? shouldRebuild,
     Widget? child,
   }) : super(
-    key: key,
-    builder: (context, value, child) =>
-        builder(context, value.value, child),
-    selector: (context, value) => selector,
-    shouldRebuild: (previous, next) => next.shouldRebuild(previous),
-    child: child,
-  );
+          key: key,
+          builder: (context, value, child) =>
+              builder(context, value.value, child),
+          selector: (context, value) => selector,
+          shouldRebuild: (previous, next) =>
+              shouldRebuild?.call(previous, next) ??
+              next.shouldRebuild(previous),
+          child: child,
+        );
 }
 
 /// 优化Selector，针对List
 class CustomSelectorList<A, T> extends Selector<A, CustomSelectorListModel<T>> {
   CustomSelectorList({
-    Key? key,
     required ValueWidgetBuilder<List<T>> builder,
     required CustomSelectorListModel<T> selector,
+    Key? key,
     ShouldRebuild<CustomSelectorListModel>? shouldRebuild,
     Widget? child,
   }) : super(
-    key: key,
-    builder: (context, value, child) =>
-        builder(context, value.value, child),
-    selector: (context, value) => selector,
-    shouldRebuild: (previous, next) => next.shouldRebuild(previous),
-    child: child,
-  );
+          key: key,
+          builder: (context, value, child) =>
+              builder(context, value.value, child),
+          selector: (context, value) => selector,
+          shouldRebuild: (previous, next) =>
+              shouldRebuild?.call(previous, next) ??
+              next.shouldRebuild(previous),
+          child: child,
+        );
 }
 
 class CustomSelectorModel<T> {
@@ -44,7 +48,7 @@ class CustomSelectorModel<T> {
 
   T? get value => _value;
 
-  CustomSelectorModel({Key? key, T? value}) {
+  CustomSelectorModel({T? value}) {
     _value = value;
   }
 
@@ -53,7 +57,7 @@ class CustomSelectorModel<T> {
     _value = value;
   }
 
-  update(){
+  void update() {
     _version++;
   }
 
@@ -73,7 +77,7 @@ class CustomSelectorListModel<T> {
 
   List<T> get value => _value;
 
-  CustomSelectorListModel({Key? key, List<T>? value}) {
+  CustomSelectorListModel({List<T>? value}) {
     _value = value ?? [];
   }
 
@@ -82,21 +86,21 @@ class CustomSelectorListModel<T> {
     _value = value;
   }
 
-  update(){
+  void update() {
     _version++;
   }
 
-  add(T data){
+  void add(T data) {
     _value.add(data);
     _version++;
   }
 
-  removeAt(int index){
+  void removeAt(int index) {
     _value.removeAt(index);
     _version++;
   }
 
-  remove(T data){
+  void remove(T data) {
     _value.remove(data);
     _version++;
   }

@@ -20,13 +20,13 @@ extension NavigationBarStyle on Style {
 extension ToastStyle on Style {
   /// 展示提示文本
   /// [msg] 展示的文本
-  /// [toastLength] 展示的长度 默认为[LENGTH_SHORT]
-  static showToast({
+  /// [toastLength] 展示的长度 默认为 LENGTH_SHORT
+  static Future<bool?> showToast({
     required String msg,
     Toast toastLength = Toast.LENGTH_SHORT,
     Color? backgroundColor,
   }) {
-    Fluttertoast.showToast(
+    return Fluttertoast.showToast(
       msg: msg,
       toastLength: toastLength,
       gravity: ToastGravity.CENTER,
@@ -40,7 +40,7 @@ extension ToastStyle on Style {
 
   /// 展示错误消息
   /// [msg] 错误消息内容
-  static showErrorToast({required String msg}) {
+  static void showErrorToast({required String msg}) {
     Global().appConfig.showErrorToast(msg);
   }
 
@@ -54,7 +54,7 @@ extension ToastStyle on Style {
 
   /// 展示成功消息
   /// [msg] 成功消息内容
-  static showSuccessToast({required String msg}) {
+  static void showSuccessToast({required String msg}) {
     Global().appConfig.showSuccessToast(msg);
   }
 }

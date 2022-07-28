@@ -16,7 +16,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
     viewModel = create();
   }
 
-  /// 创建对应的[ViewModel]
+  /// 创建对应的ViewModel
   M create();
 
   /// 绘制界面
@@ -62,7 +62,9 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
   }
 
   AppBar? get _appBar {
-    if (_pageController.hiddenAppBar) return null;
+    if (_pageController.hiddenAppBar) {
+      return null;
+    }
     return _pageController.appBar?.appBar();
   }
 
@@ -98,14 +100,14 @@ class BasePageController {
   WinnerAppBar? appBar;
 
   /// 是否使用[SafeArea]布局
-  /// 默认为[true]
+  /// 默认为 true
   bool isSafeArea = true;
 
   /// 是否根据键盘重新布局
-  /// 默认为[true]
+  /// 默认为 true
   bool resizeToAvoidBottomInset = true;
 
-  /// 默认为 [false]
+  /// 默认为 false
   bool hiddenAppBar = false;
 
   BasePageController() {
