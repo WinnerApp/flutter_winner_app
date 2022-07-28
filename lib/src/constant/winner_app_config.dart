@@ -8,6 +8,7 @@ import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
 abstract class WinnerAppConfig extends ChangeNotifier {
   /// 支持服务器请求的[url]
   List<BaseUrl> _appUrls = [];
+
   List<BaseUrl> get appUrls => _appUrls;
 
   /// 初始化
@@ -36,6 +37,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// 是否开启设备预览
   bool _isEnablePreviewDevice = false;
+
   bool get isEnablePreviewDevice => _isEnablePreviewDevice;
 
   set isEnablePreviewDevice(bool value) {
@@ -48,6 +50,11 @@ abstract class WinnerAppConfig extends ChangeNotifier {
 
   /// App 首页的[Home]
   Widget appHome(BuildContext context);
+
+  /// 提供给外部包裹[MyApp]的机会
+  Widget appWrapper(BuildContext context, Widget child) {
+    return child;
+  }
 
   /// 配置环境对应的请求地址
   WinnerEnvironmentUrl get environmentUrl;
