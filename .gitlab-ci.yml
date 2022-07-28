@@ -5,6 +5,7 @@ flutter_analyze:
   stage: analyze
   script:
     - env
+    - export PATH=/Users/jenkins/fvm/default/bin:/Users/jenkins/fvm/default/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/jenkins/.fig/bin:/Users/jenkins/.local/bin:/Users/jenkins/.mint/bin:/Users/jenkins/.mint/bin
     - flutter analyze
   tags:
     - winner-jenkins
