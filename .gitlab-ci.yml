@@ -5,3 +5,5 @@ flutter_analyze:
   stage: analyze
   script:
     - flutter analyze
+  tags:
+    - winner-jenkins
