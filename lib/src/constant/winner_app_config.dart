@@ -52,9 +52,8 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   Widget appHome(BuildContext context);
 
   /// 提供给外部包裹[MyApp]的机会
-  @mustCallSuper
-  Widget appWrapper(BuildContext context) {
-    return const MyApp();
+  Widget appWrapper(BuildContext context, Widget child) {
+    return child;
   }
 
   /// 配置环境对应的请求地址

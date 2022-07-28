@@ -164,7 +164,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
           return DevicePreview(
             enabled: data,
             builder: (context) {
-              return appConfig.appWrapper(context);
+              return appConfig.appWrapper(context,MyApp());
             },
           );
         },
