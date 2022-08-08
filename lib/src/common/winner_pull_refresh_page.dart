@@ -128,6 +128,7 @@ abstract class WinnerListRefreshPageViewModel<
     }
     _pageModel = pageModelFromModel(model);
     _updateEnablePullUp();
+    await loadDataSuccess(isRefresh: isRefresh);
   }
 
   PageModel? pageModelFromModel(Model model);
@@ -155,4 +156,6 @@ abstract class WinnerListRefreshPageViewModel<
     final api = configApi();
     return request(api: api, isUseLoading: false);
   }
+
+  Future<void> loadDataSuccess({required bool isRefresh}) async {}
 }
