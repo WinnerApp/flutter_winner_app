@@ -4,7 +4,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 
 abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
-    extends State<T> {
+    extends State<T> with AutomaticKeepAliveClientMixin{
   late M viewModel;
 
   /// 页面配置
@@ -27,6 +27,7 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider.value(
       value: viewModel,
       builder: (context, child) {
@@ -93,6 +94,9 @@ abstract class BasePage<T extends StatefulWidget, M extends BaseViewModel>
   }
 
   Color get backgroundColor => Global().appConfig.colorTheme.background;
+
+  @override
+  bool get wantKeepAlive => false;
 }
 
 class BasePageController {
