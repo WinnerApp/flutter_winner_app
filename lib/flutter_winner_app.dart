@@ -70,6 +70,7 @@ export 'src/widget/start_end_view.dart';
 export 'src/model/page_model.dart';
 export 'src/manager/app_cache_manager.dart';
 export 'src/page/server_config/server_config_page.dart';
+export 'src/manager/list_manager.dart';
 
 /// 配置请求的 Headers
 /// [map] 当前请求的请求头
