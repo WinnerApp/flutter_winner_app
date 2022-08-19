@@ -178,9 +178,7 @@ class WinnerApp<Config extends WinnerAppConfig> {
         builder: (context, data, child) {
           return DevicePreview(
             enabled: data,
-            builder: (context) {
-              return appConfig.appWrapper(context, const MyApp());
-            },
+            builder: (context) => const MyApp(),
           );
         },
       ),
@@ -196,7 +194,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     WinnerMaterialApp app = _materialApp(context);
     Global().appConfig.configMaterialApp(app);
-    return app.materialApp;
+    return Global().appConfig.appWrapper(context, app.materialApp);
   }
 
   WinnerMaterialApp _materialApp(BuildContext context) {
