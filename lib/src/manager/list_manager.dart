@@ -35,6 +35,7 @@ class ListManager<T> {
   void replace(T value, bool Function(T element) where) {
     final index = list.indexWhere((element) => where(element));
     if (index == -1) {
+      list.add(value);
       return;
     }
     list = [...list]
