@@ -70,9 +70,42 @@ class DefaultJsonConverter<T> extends JsonConverter<T, dynamic> {
 class HttpMethod {
   final String method;
 
-  HttpMethod.get() : method = "GET";
-  HttpMethod.post() : method = "POST";
+  HttpMethod(this.method);
+
+  factory HttpMethod.post() => HttpMethod("POST");
+  factory HttpMethod.put() => HttpMethod("PUT");
+  factory HttpMethod.delete() => HttpMethod("DELETE");
+  factory HttpMethod.get() => HttpMethod("GET");
+  factory HttpMethod.head() => HttpMethod("HEAD");
+  factory HttpMethod.patch() => HttpMethod("PATCH");
+  factory HttpMethod.options() => HttpMethod("OPTIONS");
+  factory HttpMethod.trace() => HttpMethod("TRACE");
+  factory HttpMethod.connect() => HttpMethod("CONNECT");
+
+  static bool isAllowMethod(String method) {
+    return allHttpMethods.map((e) => e.method).contains(method);
+  }
+
+  static HttpMethod? fromMethod(String method) {
+    if (isAllowMethod(method)) {
+      return HttpMethod(method);
+    } else {
+      return null;
+    }
+  }
 }
+
+final allHttpMethods = [
+  HttpMethod.post(),
+  HttpMethod.get(),
+  HttpMethod.put(),
+  HttpMethod.delete(),
+  HttpMethod.head(),
+  HttpMethod.patch(),
+  HttpMethod.options(),
+  HttpMethod.trace(),
+  HttpMethod.connect()
+];
 
 /// 缓存的唯一值
 class CacheKey {
