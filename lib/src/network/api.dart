@@ -93,6 +93,19 @@ class HttpMethod {
       return null;
     }
   }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    if (other is! HttpMethod) {
+      return false;
+    }
+    return other.method == method;
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => method.hashCode;
 }
 
 final allHttpMethods = [
