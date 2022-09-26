@@ -9,14 +9,20 @@ class AppCacheManager extends ChangeNotifier {
   static final AppCacheManager _instance = AppCacheManager._();
   factory AppCacheManager() => _instance;
 
-  Future<void> initCacheData() async {
+  Future<void> initCacheData<T extends JsonConverter>({
+    T? Function(Map map)? customConverter,
+  }) async {
     _cacheData = null;
     final cacheData = Global().appConfig.getNewCacheConverter;
     if (cacheData != null) {
       final currentUrl = Global().httpManager.baseUrl;
       final store = WinnerPreferenceStore(PreferenceKey(currentUrl));
       final defaultCacheData = cacheData.fromJson(<String, dynamic>{});
-      _cacheData = await store.getConverModel(cacheData) ?? defaultCacheData;
+      _cacheData = await store.getConverModel(
+            cacheData,
+            customConver: customConverter,
+          ) ??
+          defaultCacheData;
     }
     notifyListeners();
   }

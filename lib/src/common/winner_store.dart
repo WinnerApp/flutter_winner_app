@@ -88,9 +88,14 @@ extension WinnerPreferenceGetStore on WinnerPreferenceStore {
     return toModel.call(map);
   }
 
-  Future<T?> getConverModel<T extends JsonConverter>(T emptyModel) async {
+  Future<T?> getConverModel<T extends JsonConverter>(
+    T emptyModel, {
+    T? Function(Map map)? customConver,
+  }) async {
     return getModel((map) {
-      return emptyModel.fromJson(map) as T?;
+      return customConver != null
+          ? customConver.call(map)
+          : emptyModel.fromJson(map) as T?;
     });
   }
 }
