@@ -81,7 +81,12 @@ abstract class BaseViewModel extends ChangeNotifier {
 
   Future<void> showHUDFromFuture(Future<void> Function() buildFuture) async {
     showHUD();
-    await buildFuture();
-    hiddenHUD();
+    try {
+      await buildFuture();
+      hiddenHUD();
+    } catch (e) {
+      hiddenHUD();
+      rethrow;
+    }
   }
 }
