@@ -84,9 +84,11 @@ abstract class BaseViewModel extends ChangeNotifier {
     try {
       await buildFuture();
       hiddenHUD();
-    } catch (e) {
+    } catch (e, stack) {
+      debugPrint(e.toString());
+      debugPrint(stack.toString());
       hiddenHUD();
-      rethrow;
+      ToastStyle.showErrorToast(msg: e.toString());
     }
   }
 }
