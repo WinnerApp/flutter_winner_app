@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
 import 'package:flutter_winner_app/flutter_winner_app.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:flutter_ume/flutter_ume.dart'; // UME 框架
 
 /// 配置 Winner App 的基础配置
 abstract class WinnerAppConfig extends ChangeNotifier {
@@ -29,6 +29,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   String configRequestPath(BaseUrl url, Api? api) => url.url;
 
   /// 配置[SentryHost] 支持 Sentry 上报
+  @Deprecated('未来这个属性将被移除')
   SentryHost get sentryHost;
 
   /// 配置全局的 Provider 建议将全局的 Provider 设置为单例模式 比如用户信息管理 App 运行期间的数据管理
@@ -127,6 +128,7 @@ abstract class WinnerAppConfig extends ChangeNotifier {
   }
 
   /// 是否使用 Sentry 服务 关闭 则不会掉用 sentryHost
+  @Deprecated('未来这个属性将被移除')
   bool get isEnableSentry => true;
 
   /// 创建对应 App 缓存的对象 对象需要实现 JsonConverter
