@@ -2,8 +2,8 @@ class ListManager<T> {
   List<T> get list => [...rawList];
   List<T> rawList = [];
 
-  ListManager<T>([List<T>? list]) {
-    this.rawList = list ?? [];
+  ListManager([List<T>? list]) {
+    rawList = list ?? [];
   }
 
   ListManager<T> add(T value) {
@@ -43,7 +43,6 @@ class ListManager<T> {
     final index = list.indexWhere((element) => where(element));
     if (index == -1) {
       rawList.add(value);
-      return;
     }
     rawList = [...list]
       ..removeAt(index)
