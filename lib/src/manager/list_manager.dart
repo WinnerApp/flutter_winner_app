@@ -1,51 +1,60 @@
 class ListManager<T> {
-  List<T> list = [];
+  List<T> get list => [...rawList];
+  List<T> rawList = [];
 
-  ListManager([List<T>? list]) {
-    this.list = list ?? [];
+  ListManager<T>([List<T>? list]) {
+    this.rawList = list ?? [];
   }
 
-  void add(T value) {
-    list = [...list, value];
+  ListManager<T> add(T value) {
+    rawList.add(value);
+    return this;
   }
 
-  void addAll(List<T> values) {
-    list = [...list, ...values];
+  ListManager<T> addAll(List<T> values) {
+    rawList.addAll(values);
+    return this;
   }
 
-  void remove(T value) {
-    list = [...list]..remove(value);
+  ListManager<T> remove(T value) {
+    rawList.remove(value);
+    return this;
   }
 
-  void removeAll(List<T> values) {
+  ListManager<T> removeAll(List<T> values) {
     for (final value in values) {
       remove(value);
     }
+    return this;
   }
 
-  void clear() {
-    list = [];
+  ListManager<T> clear() {
+    rawList = [];
+    return this;
   }
 
   // ignore: use_setters_to_change_properties
-  void reset(List<T> values) {
-    list = values;
+  ListManager<T> reset(List<T> values) {
+    rawList = [...values];
+    return this;
   }
 
-  void replace(T value, bool Function(T element) where) {
+  ListManager<T> replace(T value, bool Function(T element) where) {
     final index = list.indexWhere((element) => where(element));
     if (index == -1) {
-      list.add(value);
+      rawList.add(value);
       return;
     }
-    list = [...list]
+    rawList = [...list]
       ..removeAt(index)
       ..insert(index, value);
+    return this;
   }
 
-  void replaceAll(List<T> values, bool Function(T element) where) {
+  ListManager<T> replaceAll(List<T> values, bool Function(T element) where) {
     for (final field in values) {
       replace(field, (element) => where(element));
     }
+    return this;
   }
 }
