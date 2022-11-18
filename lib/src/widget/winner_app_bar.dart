@@ -32,7 +32,19 @@ class WinnerAppBar {
   AppBar appBar() {
     return AppBar(
       key: key,
-      leading: leading,
+      leading: Builder(
+        builder: (context) {
+          if (leading != null) {
+            return leading!;
+          }
+          final route = ModalRoute.of(context);
+          final canPop = route?.canPop ?? false;
+          if (canPop) {
+            return const BackButton();
+          }
+          return const SizedBox.shrink();
+        },
+      ),
       automaticallyImplyLeading: automaticallyImplyLeading,
       title: title,
       actions: actions,
