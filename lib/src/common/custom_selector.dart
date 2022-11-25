@@ -1,115 +1,126 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-/// 优化Selector，可任意对象
-class CustomSelector<A, T> extends Selector<A, CustomSelectorModel<T?>> {
-  CustomSelector({
-    required ValueWidgetBuilder<T?> builder,
-    required CustomSelectorModel<T?> selector,
+class CustomSelector<A, T> extends StatelessWidget {
+  const CustomSelector({
+    required this.builder,
+    required this.selector,
     Key? key,
-    ShouldRebuild<CustomSelectorModel>? shouldRebuild,
-    Widget? child,
-  }) : super(
-          key: key,
-          builder: (context, value, child) =>
-              builder(context, value.value, child),
-          selector: (context, value) => selector,
-          shouldRebuild: (previous, next) =>
-              shouldRebuild?.call(previous, next) ??
-              next.shouldRebuild(previous),
-          child: child,
-        );
+    this.shouldRebuild,
+    this.child,
+  }) : super(key: key);
+
+  final ValueWidgetBuilder<T?> builder;
+  final CustomSelectorModel<T?> selector;
+  final ShouldRebuild<CustomSelectorModel>? shouldRebuild;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Selector<A, CustomSelectorModel<T?>>(
+      builder: (context, value, child) => builder(context, value.value, child),
+      selector: (context, value) => selector..register(this),
+      child: child,
+      shouldRebuild: (previous, next) {
+        return shouldRebuild?.call(previous, next) ?? next.shouldRebuild(this);
+      },
+    );
+  }
 }
 
 /// 优化Selector，针对List
-class CustomSelectorList<A, T> extends Selector<A, CustomSelectorListModel<T>> {
-  CustomSelectorList({
-    required ValueWidgetBuilder<List<T>> builder,
-    required CustomSelectorListModel<T> selector,
+class CustomSelectorList<A, T> extends StatelessWidget {
+  const CustomSelectorList({
+    required this.builder,
+    required this.selector,
     Key? key,
-    ShouldRebuild<CustomSelectorListModel>? shouldRebuild,
-    Widget? child,
-  }) : super(
-          key: key,
-          builder: (context, value, child) =>
-              builder(context, value.value, child),
-          selector: (context, value) => selector,
-          shouldRebuild: (previous, next) =>
-              shouldRebuild?.call(previous, next) ??
-              next.shouldRebuild(previous),
-          child: child,
-        );
+    this.shouldRebuild,
+    this.child,
+  }) : super(key: key);
+
+  final ValueWidgetBuilder<List<T>> builder;
+  final CustomSelectorListModel<T> selector;
+  final ShouldRebuild<CustomSelectorListModel>? shouldRebuild;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Selector<A, CustomSelectorListModel<T>>(
+      key: key,
+      builder: (context, value, child) => builder(context, value.value, child),
+      selector: (context, value) => selector..register(this),
+      shouldRebuild: (previous, next) {
+        return shouldRebuild?.call(previous, next) ?? next.shouldRebuild(this);
+      },
+      child: child,
+    );
+  }
 }
 
-class CustomSelectorModel<T> {
+class CustomSelectorModel<T> with CustomSelecterModelMixin {
   T? _value;
-  int _version = 0;
-  int _lastVersion = -1;
 
   T? get value => _value;
 
   CustomSelectorModel({T? value}) {
     _value = value;
+    update();
   }
 
   set value(T? value) {
-    _version++;
+    update();
     _value = value;
-  }
-
-  void update() {
-    _version++;
-  }
-
-  bool shouldRebuild(CustomSelectorModel previous) {
-    bool isUpdate = _version != _lastVersion;
-    if (isUpdate) {
-      _lastVersion = _version;
-    }
-    return isUpdate;
   }
 }
 
-class CustomSelectorListModel<T> {
+class CustomSelectorListModel<T> with CustomSelecterModelMixin {
   List<T> _value = [];
-  int _version = 0;
-  int _lastVersion = -1;
-
   List<T> get value => _value;
 
   CustomSelectorListModel({List<T>? value}) {
     _value = value ?? [];
+    update();
   }
 
   set value(List<T> value) {
-    _version++;
     _value = value;
-  }
-
-  void update() {
-    _version++;
+    update();
   }
 
   void add(T data) {
     _value.add(data);
-    _version++;
+    update();
   }
 
   void removeAt(int index) {
     _value.removeAt(index);
-    _version++;
+    update();
   }
 
   void remove(T data) {
     _value.remove(data);
-    _version++;
+    update();
+  }
+}
+
+mixin CustomSelecterModelMixin {
+  final hashVersions = <Object, int>{};
+  int currentVersion = 0;
+
+  bool shouldRebuild(Object key) {
+    final hashVersion = hashVersions[key];
+    if (hashVersion == null || hashVersion == currentVersion) {
+      return false;
+    }
+    hashVersions[key] = currentVersion;
+    return true;
   }
 
-  bool shouldRebuild(CustomSelectorListModel previous) {
-    bool isUpdate = _version != _lastVersion;
-    if (isUpdate) {
-      _lastVersion = _version;
-    }
-    return isUpdate;
+  void update() {
+    currentVersion++;
+  }
+
+  void register(Object key) {
+    hashVersions[key] = 0;
   }
 }
